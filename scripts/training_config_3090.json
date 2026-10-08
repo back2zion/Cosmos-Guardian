@@ -1,0 +1,16 @@
+{
+  "training_params": {
+    "model_id": "Qwen/Qwen2-VL-7B-Instruct",
+    "batch_size": 1,
+    "gradient_accumulation_steps": 8,
+    "learning_rate": 2e-4,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "epochs": 3,
+    "max_seq_len": 2048
+  },
+  "data": {
+    "json_path": "fine_tuning_data.json",
+    "image_root": "../../Sample"
+  }
+}

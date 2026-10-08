@@ -1,0 +1,38 @@
+[project]
+name = "cosmos-guardian"
+version = "0.1.0"
+description = "Adaptive Physical Safety Reasoning Agent"
+requires-python = ">=3.10"
+dependencies = [
+    "torch==2.9.0",
+    "torchvision",
+    "transformers>=4.57.0",
+    "accelerate>=1.12.0",
+    "qwen-vl-utils==0.0.14",
+    "pyyaml>=6.0.3",
+    "pillow>=12.0.0",
+    "av>=16.0.1",
+    "fiftyone",
+    "fastapi",
+    "uvicorn",
+    "python-multipart",
+    "datasets",
+    "peft",
+    "bitsandbytes",
+    "sentencepiece",
+    "opencv-python",
+    "streamlit",
+]
+
+[tool.uv]
+index-url = "https://download.pytorch.org/whl/cu128"
+extra-index-url = ["https://pypi.org/simple"]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true

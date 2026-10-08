@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+outputs/
+data/
+uploads/
+*.log
+.env
+dist/
+assets/test_data/*.mp4

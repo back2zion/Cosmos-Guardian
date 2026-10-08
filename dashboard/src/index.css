@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+:root {
+  --foreground-rgb: 20, 20, 25;
+  --background-start-rgb: 245, 247, 250;
+  --background-end-rgb: 230, 235, 240;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      rgb(var(--background-start-rgb)),
+      rgb(var(--background-end-rgb))
+    );
+  min-height: 100vh;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.glow-blue {
+  box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
+}
+
+.glow-red {
+  box-shadow: 0 10px 30px -10px rgba(239, 68, 68, 0.2);
+}

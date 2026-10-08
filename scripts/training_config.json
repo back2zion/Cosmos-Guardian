@@ -1,0 +1,16 @@
+{
+  "remote_server": {
+    "hardware": "2 x H100 (80GB)",
+    "hf_token": "YOUR_HF_TOKEN",
+    "data_path": "data/priority"
+  },
+  "training_params": {
+    "model_id": "nvidia/Cosmos-Reason2-8B",
+    "batch_size": 4,
+    "gradient_accumulation_steps": 4,
+    "learning_rate": 2e-4,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "epochs": 3
+  }
+}
