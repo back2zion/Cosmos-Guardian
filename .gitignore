@@ -9,3 +9,10 @@ uploads/
 .env
 dist/
 assets/test_data/*.mp4
+audit/
+*.jsonl
+.pytest_cache/
+.ruff_cache/
+Sample/
+.env.*
+!.env.example
