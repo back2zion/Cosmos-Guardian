@@ -70,7 +70,29 @@ To download AI Hub data with `scripts/download_aihub_real.py`, set `AIHUB_ACCESS
 - **Label grounding is off by default.** `CosmosGuardianAgent(use_label_grounding=True)` looks up the AI Hub label for the input file and injects it into the prompt. This is for demos only. Outputs produced this way must not be used to judge accuracy.
 - **Small model, small data.** The 2B model and template-generated targets limit how specific the reasoning can be. The smart-factory set covers a single incident type.
 - **Output parsing is lenient.** The parser repairs truncated JSON. A repaired report can silently drop fields.
-- **No audit trail yet.** Outputs are not yet logged together with their input, model version, and prompt. Adding that record is the next planned step.
+- **Optional audit trail.** Set `COSMOS_AUDIT_LOG=audit/decisions.jsonl` for the API,
+  or pass `audit_log_path="audit/decisions.jsonl"` to `CosmosGuardianAgent`.
+  Each completed analysis appends a hash-chained JSON record and includes its
+  sequence number and hash in the `complete` event. Logs contain the parsed result,
+  context, model ID, adapter folder name and hashes of the input, adapter weights,
+  actual system/user prompt text (concatenated without a separator), and raw output.
+  Media bytes and raw model output are not stored; parse failures record a null result.
+  Logging is disabled by default. An audit write failure prevents a `complete` event.
+  Verify with `python -m core.audit verify audit/decisions.jsonl` (exit status 0 or 1;
+  failure locations are zero-based line indices). POSIX file locks serialize writes,
+  and corrupt or incomplete logs cannot be extended. Verification cannot detect
+  deletion of the tail or a fully rewritten chain without an externally retained hash.
+
+## Development checks without model dependencies
+
+The audit module uses only the standard library. The tests use stub inference
+components, so neither torch nor a GPU is required:
+
+```bash
+uv sync --only-dev
+uv run --only-dev pytest -q
+uv run --only-dev ruff check core tests
+```
 
 ## License
 

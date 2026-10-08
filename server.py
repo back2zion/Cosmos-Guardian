@@ -12,7 +12,7 @@ except ImportError:
     from core.agent import CosmosGuardianAgent
 
 # Initialize Agent
-agent = CosmosGuardianAgent()
+agent = CosmosGuardianAgent(audit_log_path=os.environ.get("COSMOS_AUDIT_LOG") or None)
 
 from contextlib import asynccontextmanager
 

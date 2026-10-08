@@ -1,10 +1,14 @@
+import hashlib
+import json
 import os
+from pathlib import Path
+from typing import Any
+
 import torch
 import transformers
-from pathlib import Path
 import yaml
-import json
-from typing import Dict, Any, List
+
+from .audit import append_record, sha256_file
 
 # Default adapter path (fine-tuned LoRA)
 DEFAULT_ADAPTER_PATH = str(Path(__file__).parent.parent / "outputs" / "cosmos-reason2-2b-safety-lora")
@@ -19,13 +23,16 @@ class CosmosGuardianAgent:
     def __init__(
         self,
         model_id: str = "nvidia/Cosmos-Reason2-2B",
-        device: str = None,
+        device: str | None = None,
         use_label_grounding: bool = False,
-        label_dir: str = None,
+        label_dir: str | None = None,
+        audit_log_path: str | None = None,
     ):
         self.model_id = model_id
         self.use_label_grounding = use_label_grounding
         self.label_dir = Path(label_dir) if label_dir else DEFAULT_LABEL_DIR
+        self.audit_log_path = audit_log_path
+        self._audit_adapter = None
         self.adapter_loaded = False
         # Auto-detect GPU: prefer cuda:0, fallback to cpu
         self.device = device or ("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -33,13 +40,14 @@ class CosmosGuardianAgent:
         self.processor = None
         self.prompts = self._load_prompts()
 
-    def _load_prompts(self) -> Dict[str, str]:
+    def _load_prompts(self) -> dict[str, str]:
         prompt_path = Path(__file__).parent.parent / "prompts" / "safety_inspector.yaml"
         with open(prompt_path, "r") as f:
             return yaml.safe_load(f)
 
-    def load_model(self, adapter_path: str = None):
+    def load_model(self, adapter_path: str | None = None):
         print(f"Loading model {self.model_id} on {self.device}...")
+        self._audit_adapter = None
         
         # Optimize for H100/3090 using bfloat16 if supported
         compute_dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
@@ -53,13 +61,21 @@ class CosmosGuardianAgent:
         )
         
         if adapter_path and os.path.exists(adapter_path):
+            # Fingerprint the weights being loaded, not a later on-disk version.
+            audit_adapter = None
+            if self.audit_log_path is not None:
+                audit_adapter = {
+                    "path": Path(adapter_path).name,
+                    "sha256": sha256_file(Path(adapter_path) / "adapter_model.safetensors"),
+                }
             try:
                 print(f"Integrating Safety Specialist Adapter from {adapter_path}...")
                 from peft import PeftModel
                 self.model = PeftModel.from_pretrained(self.model, adapter_path)
                 self.adapter_loaded = True
+                self._audit_adapter = audit_adapter
                 print("LoRA adapter loaded successfully.")
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001 - preserve optional-adapter fallback
                 print(f"Warning: Failed to load adapter, using base model. Error: {e}")
             
         self.processor = transformers.AutoProcessor.from_pretrained(self.model_id)
@@ -70,7 +86,7 @@ class CosmosGuardianAgent:
         
         if adapter_path and not self.adapter_loaded:
             print(f"Adapter not found at {adapter_path}; running the base model (zero-shot).")
-        print(f"Model loaded with {str(compute_dtype)}. Specialization: {'LoRA adapter' if self.adapter_loaded else 'Zero-shot'}")
+        print(f"Model loaded with {compute_dtype!s}. Specialization: {'LoRA adapter' if self.adapter_loaded else 'Zero-shot'}")
 
     def analyze_media(self, media_path: str, safety_context: str = "General Industrial Safety"):
         import time
@@ -82,8 +98,9 @@ class CosmosGuardianAgent:
 
         torch.cuda.empty_cache()
         media_type = "video" if Path(media_path).suffix.lower() in [".mp4", ".avi", ".mov", ".webm"] else "image"
+        input_sha256 = sha256_file(media_path) if self.audit_log_path is not None else None
         
-        yield {"stage": "preprocessing", "detail": f"Extracting keyframes for rapid analysis..."}
+        yield {"stage": "preprocessing", "detail": "Extracting keyframes for rapid analysis..."}
         
         # --- OPTIONAL LABEL GROUNDING (demo only, off by default) ---
         grounding_data = ""
@@ -100,7 +117,7 @@ class CosmosGuardianAgent:
                     facility = label_json.get("object_information_facility", {})
                     grounding_data = f"[Expert Ground Truth]: This scene is from a {meta.get('environment', 'factory')}. Event: {meta.get('event', 'safety event')}. Facility involved: {facility.get('facility_name', 'machine')}. Worker ID: {human.get('id', 'h0001')}."
                     print(f"Label grounding active for {video_name} (demo mode, not for evaluation)")
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001 - preserve optional demo-label fallback
                 print(f"Grounding lookup failed: {e}")
 
         # --- INCIDENT FOCUS (Prompt Engineering) ---
@@ -123,7 +140,8 @@ class CosmosGuardianAgent:
                 indices = [int(i * total_frames / 6) for i in range(6)]
                 for i in range(total_frames):
                     ret, frame = cap.read()
-                    if not ret: break
+                    if not ret:
+                        break
                     if i in indices:
                         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                         # 336x336 provides enough detail for 'jam' while keeping context manageable
@@ -172,8 +190,9 @@ class CosmosGuardianAgent:
 
         yield {"stage": "inference", "detail": f"Executing Chain-of-Thought ({self.device})..."}
         
-        from transformers import TextIteratorStreamer
         from threading import Thread
+
+        from transformers import TextIteratorStreamer
         
         streamer = TextIteratorStreamer(self.processor.tokenizer, skip_prompt=True, skip_special_tokens=True)
         generation_kwargs = dict(
@@ -202,17 +221,41 @@ class CosmosGuardianAgent:
         
         yield {"stage": "postprocessing", "detail": "Finalizing safety report..."}
         
-        result = self._parse_output(full_output)
+        if self.audit_log_path is None:
+            result = self._parse_output(full_output)
+        else:
+            result, parse_error = self._parse_output_with_status(full_output)
         print(f"Total cycle time: {time.time() - start_time:.2f}s")
-        yield {"stage": "complete", "result": result}
+        complete = {"stage": "complete", "result": result}
+        if self.audit_log_path is not None:
+            # Parser failures carry raw output for the existing API. Do not log it.
+            record = append_record(
+                self.audit_log_path,
+                input_name=Path(media_path).name,
+                input_sha256=input_sha256,
+                media_type=media_type,
+                model_id=self.model_id,
+                adapter=self._audit_adapter,
+                prompt_sha256=hashlib.sha256((system_msg + user_prompt).encode("utf-8")).hexdigest(),
+                label_grounding=self.use_label_grounding,
+                safety_context=safety_context,
+                raw_output_sha256=hashlib.sha256(full_output.encode("utf-8")).hexdigest(),
+                result=None if parse_error else result,
+                parse_error=parse_error,
+            )
+            complete["audit"] = {"seq": record["seq"], "hash": record["hash"]}
+        yield complete
 
-    def _parse_output(self, output_text: str) -> Dict[str, Any]:
+    def _parse_output(self, output_text: str) -> dict[str, Any]:
+        return self._parse_output_with_status(output_text)[0]
+
+    def _parse_output_with_status(self, output_text: str) -> tuple[dict[str, Any], bool]:
         import re
         try:
             # Find the true start of the JSON
             start_idx = output_text.find('{')
             if start_idx == -1:
-                return {"raw_output": output_text, "error": "No JSON found"}
+                return {"raw_output": output_text, "error": "No JSON found"}, True
             
             clean_text = output_text[start_idx:].strip()
 
@@ -233,19 +276,22 @@ class CosmosGuardianAgent:
                 # Fix bracket stack
                 stack = []
                 for char in text:
-                    if char == '{': stack.append('}')
-                    elif char == '[': stack.append(']')
-                    elif char == '}' or char == ']':
-                        if stack and stack[-1] == char:
-                            stack.pop()
+                    if char == '{':
+                        stack.append('}')
+                    elif char == '[':
+                        stack.append(']')
+                    elif char in ('}', ']') and stack and stack[-1] == char:
+                        stack.pop()
                 
                 # Filter out the remaining closing brackets if they are already present
                 # Actually, simpler to just count and append
                 open_braces = text.count('{') - text.count('}')
                 open_brackets = text.count('[') - text.count(']')
                 
-                if open_braces > 0: text += '}' * open_braces
-                if open_brackets > 0: text += ']' * open_brackets
+                if open_braces > 0:
+                    text += '}' * open_braces
+                if open_brackets > 0:
+                    text += ']' * open_brackets
                 
                 # Final check if it ends correctly, if not, force it
                 if not text.endswith('}') and not text.endswith(']'):
@@ -254,21 +300,22 @@ class CosmosGuardianAgent:
 
             try:
                 # Try raw first
-                return json.loads(clean_text)
-            except:
+                return json.loads(clean_text), False
+            except json.JSONDecodeError:
                 # Try aggressive repair
                 repaired = bulletproof_repair(clean_text)
                 try:
-                    return json.loads(repaired)
-                except:
+                    return json.loads(repaired), False
+                except json.JSONDecodeError:
                     # Last resort: try to find the last valid object
                     last_obj_end = clean_text.rfind('}')
                     if last_obj_end != -1:
                         try:
-                            return json.loads(clean_text[:last_obj_end+1])
-                        except: pass
-                    raise Exception("Final JSON extraction failed")
+                            return json.loads(clean_text[:last_obj_end+1]), False
+                        except json.JSONDecodeError:
+                            pass
+                    raise ValueError("Final JSON extraction failed")
             
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001 - preserve the parser's existing error response
             print(f"Error parsing JSON output: {e}")
-            return {"raw_output": output_text, "error": "Parsing failed"}
+            return {"raw_output": output_text, "error": "Parsing failed"}, True
