@@ -1,0 +1,42 @@
+{
+  "result_sha256": "ec44b181cbe6bf87e4d254e01c4e87510210e9c070dad602e64aeb2a91600b2d",
+  "summary_recomputed_matches": true,
+  "ordered_samples_labels_and_media_hashes_match": true,
+  "source_snapshots": {
+    "core/agent.py": {
+      "snapshot": "source/agent.py",
+      "sha256": "9d9652af94c8ec79ea3270dad5263e44520712242ee16be2191392430a5c90e1"
+    },
+    "core/evaluation.py": {
+      "snapshot": "source/evaluation.py",
+      "sha256": "8a5b93aba87ab7be5fb18ea2d99f622da64232fe15d6cccdd888241164dab08b"
+    },
+    "scripts/benchmark.py": {
+      "snapshot": "source/benchmark.py",
+      "sha256": "f671d7f8168b606d191f86a33675bf3d31bb504ae06fee7bfe21df3ef5b5567c"
+    },
+    "prompts/safety_inspector.yaml": {
+      "snapshot": "source/safety_inspector.yaml",
+      "sha256": "1c0b2804224206f032040cba0d5d7e65db8c63a1b6cdcc30fc806213d2831346"
+    },
+    "evaluation/public_ppe_manifest.json": {
+      "snapshot": "source/public_ppe_manifest.json",
+      "sha256": "8e6ea875022830803c7143cf59ca83eddec95beec9c624646d02376169c9a239"
+    }
+  },
+  "derived_metrics": {
+    "ppe_true_positives": 0,
+    "ppe_recall_including_failures": 0.0,
+    "ppe_recall_denominator": 50,
+    "all_attempts_mean_seconds": 27.001,
+    "all_attempts_p95_seconds": 69.845,
+    "all_attempts_sum_seconds": 2700.094,
+    "failed_attempts": 14,
+    "failed_attempts_max_seconds": 105.987
+  },
+  "notes": [
+    "Derived latency includes failed attempts; excludes model loading, downloading, inter-sample checkpoint writes and process setup.",
+    "Result contains parsed outputs and per-sample error messages; raw generation text is not retained.",
+    "Flat source snapshots preserve original bytes and are provenance artifacts, not a standalone runnable checkout."
+  ]
+}

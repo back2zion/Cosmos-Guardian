@@ -1,0 +1,1450 @@
+{
+  "name": "public-ppe-helmet-compliance",
+  "source": "https://huggingface.co/datasets/Voxel51/hard-hat-detection",
+  "source_revision": "d11e7d6b69ba1a22422db3230c0415d39a699d7c",
+  "source_metadata_sha256": "da9777e7dfede3906cd51a81b6520bc284e05335c39d5e2e82f7223f3be624e3",
+  "license_as_declared_by_source": "CC0-1.0",
+  "seed": 42,
+  "samples_per_class": 50,
+  "safety_context": "Evaluate ONLY safety helmet compliance for visible people. Report a ppe_violation hazard when at least one visible head lacks a safety helmet. If all visible heads wear safety helmets, return hazards_detected as an empty list. Exclude other equipment, machinery, fall, electrical or site hazards from this assessment. This assessment does not determine overall site safety.",
+  "scope": "Helmet presence only; negative means no unprotected head annotated, not a safe worksite",
+  "limitations": [
+    "Targets are upstream annotations, not independent review by an industrial safety expert.",
+    "Original session groups are unavailable; all samples share one conservative unknown-session group.",
+    "Exact duplicate files are removed; near-duplicates and pretraining overlap are not verified.",
+    "Only base-model evaluation is immediately available; no project LoRA weights are supplied.",
+    "The upstream dataset calls its only split train; this project does not train on this selected evaluation subset."
+  ],
+  "samples": [
+    {
+      "id": "public-ppe:hard_hat_workers4669",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4669.png",
+      "media_sha256": "95cf29d7bb94fa425acfbf13272286474d23cc61b9ac119bbcc4169d08019134",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4669.png",
+      "upstream_object_counts": {
+        "helmet": 6
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3654",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3654.png",
+      "media_sha256": "87e08eb69d70e4fa13759d9f6fed4d26354ac7d6d2af40a4166b7d663b79c4ce",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3654.png",
+      "upstream_object_counts": {
+        "helmet": 1
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3198",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3198.png",
+      "media_sha256": "829b7afc1fd925644ec723ede33a98f51e8beb06675fba3aaa3c24b82324d0eb",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3198.png",
+      "upstream_object_counts": {
+        "head": 11
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1435",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1435.png",
+      "media_sha256": "7800ae7fd89f8ca5c4ba6e5c14f600a37b94e587f11147d8601e611a056c515a",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1435.png",
+      "upstream_object_counts": {
+        "helmet": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3882",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3882.png",
+      "media_sha256": "73e708048dd196966a05d64a2375fb532a6ca79526f78a5289ab693331b3cd90",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3882.png",
+      "upstream_object_counts": {
+        "helmet": 4
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers932",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers932.png",
+      "media_sha256": "02d65a90a4ca6b93e101491b470637048902e17ad017418f2d6befb7fd3bdc6c",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers932.png",
+      "upstream_object_counts": {
+        "head": 14
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4044",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4044.png",
+      "media_sha256": "6736e71f209ed24ea799b22bb660fc5d81d7e8729ede454d1a9556ce747f01bc",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4044.png",
+      "upstream_object_counts": {
+        "helmet": 1,
+        "head": 10
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1122",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1122.png",
+      "media_sha256": "1e838c9476e78ca86d0ed1e8a865768803da56832b2677ec34f485ceb4510bd1",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1122.png",
+      "upstream_object_counts": {
+        "helmet": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers871",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers871.png",
+      "media_sha256": "f57f202bdadb4084bf187109cd2be217685ecd055368e4a6a57328d8ca733b2c",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers871.png",
+      "upstream_object_counts": {
+        "helmet": 2,
+        "head": 7
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3783",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3783.png",
+      "media_sha256": "119d20d6beb174deba5fcd82f3fbf42dc596a589fe9eef1b482c15f6bdc6f406",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3783.png",
+      "upstream_object_counts": {
+        "head": 13
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers108",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers108.png",
+      "media_sha256": "e03f4944b8763b723df3de47d700ec5b9216cfba9a0d34517f3602d2cff0789a",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers108.png",
+      "upstream_object_counts": {
+        "helmet": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers570",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers570.png",
+      "media_sha256": "0451c31b0456891b5bddc4dfb5fee9ff9ba99ba989f6f751cae92a8ea49dab1e",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers570.png",
+      "upstream_object_counts": {
+        "helmet": 4,
+        "head": 6
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2580",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2580.png",
+      "media_sha256": "056eb33caef169c6c27c2620b18227f2e6ac2d4ac8a5325bd1e99cdd9d79a4ee",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2580.png",
+      "upstream_object_counts": {
+        "helmet": 4,
+        "head": 4
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3881",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3881.png",
+      "media_sha256": "f102e4b74e211384778ec4f54b7e9f95cc18144eeb4d45f3c8274e6954f4d81b",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3881.png",
+      "upstream_object_counts": {
+        "helmet": 9
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2558",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2558.png",
+      "media_sha256": "79f246c0049a163fa61740f472d83778d75b4c56d1bb671734029f6310522feb",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2558.png",
+      "upstream_object_counts": {
+        "helmet": 6
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2849",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2849.png",
+      "media_sha256": "f72a59914d22cd71e1f3f534e0cedf3c2997b8f7f64b5c231d03232347f704bc",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2849.png",
+      "upstream_object_counts": {
+        "helmet": 4,
+        "head": 4
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4951",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4951.png",
+      "media_sha256": "35cc883bd2f035910a38a42c053d533ce8b7f5d2c75359e899a30553132fba0f",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4951.png",
+      "upstream_object_counts": {
+        "head": 8
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4983",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4983.png",
+      "media_sha256": "99ad625693648cf6b20d17e82b62c9e683beab326e5dbbb847d301244558b1cf",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4983.png",
+      "upstream_object_counts": {
+        "helmet": 3,
+        "head": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers584",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers584.png",
+      "media_sha256": "6d6824acc6698e05d7afc3ce0a87ccf69d497aec12a09fada956862544849f35",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers584.png",
+      "upstream_object_counts": {
+        "helmet": 6
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers179",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers179.png",
+      "media_sha256": "b20b9cd510ca98e874e4b91cfedd8f3fc61b62c1e68204b7b0a11b14bfb6731c",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers179.png",
+      "upstream_object_counts": {
+        "helmet": 1,
+        "head": 7
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4341",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4341.png",
+      "media_sha256": "4c0f6149bf90a34ff291e4711ef239e23a6e559f61e0ba52eab6c73c8984fc62",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4341.png",
+      "upstream_object_counts": {
+        "helmet": 3,
+        "head": 1
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4210",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4210.png",
+      "media_sha256": "25ed864aaa8cb32c592144cdb43da7e74edabd281320d3589cdcf065c8c33e25",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4210.png",
+      "upstream_object_counts": {
+        "helmet": 4
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2410",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2410.png",
+      "media_sha256": "4666dd08309580b46c0758cc8f3c53ba7a5ce905b64640e70ef0fe1dc4539445",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2410.png",
+      "upstream_object_counts": {
+        "head": 2,
+        "helmet": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3894",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3894.png",
+      "media_sha256": "02c6217595510abd3d93e80336be1ab8689c85d89e904cddda3c62d323b2e212",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3894.png",
+      "upstream_object_counts": {
+        "helmet": 2,
+        "head": 15
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers862",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers862.png",
+      "media_sha256": "f93a26ac006bcf50a4c0f8668f1d666e3dce836a299ce51e66cb0f8b9cf4808e",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers862.png",
+      "upstream_object_counts": {
+        "helmet": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers907",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers907.png",
+      "media_sha256": "06379d3803894f915228b47285bfd24678d8b25b72157be71728cbb094af307d",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers907.png",
+      "upstream_object_counts": {
+        "helmet": 4
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1325",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1325.png",
+      "media_sha256": "3938d8ad95e1d842d54f5beab6dfd02b32e900dfad08fd63ed8340114bacb76d",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1325.png",
+      "upstream_object_counts": {
+        "helmet": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4978",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4978.png",
+      "media_sha256": "7a0364b5e9fdd9395f3c7221fdfe4294624745cc98e70664e4e2ab499c1fca46",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4978.png",
+      "upstream_object_counts": {
+        "helmet": 1
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers460",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers460.png",
+      "media_sha256": "45c48c07144c9e88aa3a3a620194d4d9d353ecc22eb41069cb4da06dab2641c2",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers460.png",
+      "upstream_object_counts": {
+        "head": 6
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers693",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers693.png",
+      "media_sha256": "386487c9b53aaaffacb02e1e3845693bdb1e0f7adc3a1b03eb8b6e5ccec582b8",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers693.png",
+      "upstream_object_counts": {
+        "helmet": 1,
+        "head": 10
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1875",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1875.png",
+      "media_sha256": "1c4e22050fdc4db51b4b065dd8959f2804abad9cab7e3137ed44bc01e6fff4c3",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1875.png",
+      "upstream_object_counts": {
+        "head": 7
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1100",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1100.png",
+      "media_sha256": "6a1e291ba421c16b437ef1e76b72b8a8be97441ef9b29d8d2f0df5733a7db796",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1100.png",
+      "upstream_object_counts": {
+        "helmet": 9
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1443",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1443.png",
+      "media_sha256": "eef31d2426a256f84209cb4a4bee9b50409c57ecca61a76248a589f07cfbef24",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1443.png",
+      "upstream_object_counts": {
+        "helmet": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2884",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2884.png",
+      "media_sha256": "dd67983fe923b8d743aac9d4c42f7ebc4c7cfac2a2d802a43ec393513649fd40",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2884.png",
+      "upstream_object_counts": {
+        "helmet": 4
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers607",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers607.png",
+      "media_sha256": "0316d8f2da3ea744775adb3acf6deaf3bd5937cafe29b70f7e570797104c089d",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers607.png",
+      "upstream_object_counts": {
+        "helmet": 4,
+        "head": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3268",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3268.png",
+      "media_sha256": "102e2fcdd5fa436fe1cc31e22332df332e5c68bdfad5a4b07e56fb668f0c33b4",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3268.png",
+      "upstream_object_counts": {
+        "head": 12
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3750",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3750.png",
+      "media_sha256": "e11c41672b285401c60dcefa1e232ef01733f5d8f561e73c82478c7b9a4b584e",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3750.png",
+      "upstream_object_counts": {
+        "helmet": 7
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4958",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4958.png",
+      "media_sha256": "29dfdb3ac8a3f3426f5818ee7e4fb1d37d30bd9ca135be1ab915381e80f34d00",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4958.png",
+      "upstream_object_counts": {
+        "helmet": 3
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2502",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2502.png",
+      "media_sha256": "981903a874a601238355e98e6f079fff62640b8ee6693cf22f3db7cf2adb4fbe",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2502.png",
+      "upstream_object_counts": {
+        "helmet": 1
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1054",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1054.png",
+      "media_sha256": "c8169352d9275267aec54370a357b6045d7e17de8b7c78ce8434054e6a1488aa",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1054.png",
+      "upstream_object_counts": {
+        "helmet": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers909",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers909.png",
+      "media_sha256": "07ffa8652e2a58f02ddeaa1fa06c426ef10cf324603522c122adcc743a93c3d2",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers909.png",
+      "upstream_object_counts": {
+        "helmet": 14
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2724",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2724.png",
+      "media_sha256": "18448271b0815746693fa8e4942c6589c1ae7b3072d73b03da26e0f3d7317afc",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2724.png",
+      "upstream_object_counts": {
+        "head": 6
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3533",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3533.png",
+      "media_sha256": "4b999f2c8836af35d04963f04c54f20acfcba169b20773edf3d4c357d331e0e3",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3533.png",
+      "upstream_object_counts": {
+        "helmet": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers347",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers347.png",
+      "media_sha256": "f03322cf9b335c9217d9b08752bd7bb18a94120a3303308784d5a1f00994071f",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers347.png",
+      "upstream_object_counts": {
+        "helmet": 1
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1210",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1210.png",
+      "media_sha256": "b472c7ce8ed50871b15b853dd4e4c77736593ee7b26d67a80e5c8aa81197a430",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1210.png",
+      "upstream_object_counts": {
+        "helmet": 1,
+        "head": 1
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3626",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3626.png",
+      "media_sha256": "7ce54da680bbdb761645f8f140a49ecc15ed88ecf1f333c3b2fb7734ee10bae5",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3626.png",
+      "upstream_object_counts": {
+        "head": 9
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2571",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2571.png",
+      "media_sha256": "5d1de2eeb0eb201d4c803e79fbb4ff0977807805f87c51d445ec90b53087d5c4",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2571.png",
+      "upstream_object_counts": {
+        "helmet": 8,
+        "head": 1
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers747",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers747.png",
+      "media_sha256": "4c0b6f3ead3cbe745865411704d0131c38ddd40e2085a714c8409ba299ac86dc",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers747.png",
+      "upstream_object_counts": {
+        "helmet": 8
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4782",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4782.png",
+      "media_sha256": "8ea0111fe3ca9874f7132475db57225b43e77743d8cbf2f4f21d33526d71b5a6",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4782.png",
+      "upstream_object_counts": {
+        "helmet": 3
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers536",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers536.png",
+      "media_sha256": "9dad3954ac6fa407d8bb677620376804a078c3f13bb8cb6f55dbd805b67a2de5",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers536.png",
+      "upstream_object_counts": {
+        "head": 6
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers35",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers35.png",
+      "media_sha256": "35374835fb7d7a0cd8c434a898e695c00fe3bcb9acd3b6a348e6c3abbaef8804",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers35.png",
+      "upstream_object_counts": {
+        "helmet": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1144",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1144.png",
+      "media_sha256": "3526b800a0ae08ac43723ce8959158e0415f1e606efb9d60d82ff1cdf6c9cadf",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1144.png",
+      "upstream_object_counts": {
+        "helmet": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4386",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4386.png",
+      "media_sha256": "a3bf27149a088c32f0e0999d6eef2a0913a0ba83246ee070cbca670836866314",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4386.png",
+      "upstream_object_counts": {
+        "helmet": 3,
+        "head": 11
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1049",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1049.png",
+      "media_sha256": "8e22d16c8d842ad09d27d7680b85c9d05d6f3ca23d564426e100a12a517edaa5",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1049.png",
+      "upstream_object_counts": {
+        "helmet": 4,
+        "head": 6
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3546",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3546.png",
+      "media_sha256": "fce0d77e326cffa3cbbae61e89260a4cf0fbab6afa10dc602f680f9cfc27e39e",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3546.png",
+      "upstream_object_counts": {
+        "helmet": 4,
+        "head": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3777",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3777.png",
+      "media_sha256": "113c18479db9f7e168a23bc7ea3e60473d5f0e2c384b057e5889444a2842922e",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3777.png",
+      "upstream_object_counts": {
+        "helmet": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2886",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2886.png",
+      "media_sha256": "4a8408d3436dc32b03590f460698aa3b1e32629eb9661ea8e3c8bad314991173",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2886.png",
+      "upstream_object_counts": {
+        "helmet": 8,
+        "head": 1
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3996",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3996.png",
+      "media_sha256": "da9cc83af8642e82c5c5c4a1e3ce0348d745c40ce6eca1e09059af7fe3ec0070",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3996.png",
+      "upstream_object_counts": {
+        "head": 13
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3162",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3162.png",
+      "media_sha256": "288db1b9acce20073db6a9fd07177ef7b8c02a7c48166726b2adaaf855bc2e63",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3162.png",
+      "upstream_object_counts": {
+        "head": 11
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2040",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2040.png",
+      "media_sha256": "8595bce8eb3506ba3bf53f6ef9e39b05a13ba63e5a179aed70e0df928bbc7e9c",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2040.png",
+      "upstream_object_counts": {
+        "helmet": 9
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2490",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2490.png",
+      "media_sha256": "1682713514c2e413c8010a321e8d89f6656ed367510e3c7d81d08d54defa855b",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2490.png",
+      "upstream_object_counts": {
+        "head": 8
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2617",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2617.png",
+      "media_sha256": "0e5c68617ab14ed5b8e60c8e22dbe5d6dc2c00f0eebf2117dd837417e0b8baae",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2617.png",
+      "upstream_object_counts": {
+        "helmet": 4
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1004",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1004.png",
+      "media_sha256": "aad8ab690f7ad2e443ff435fb09751f09e8c25e3465ff416b3d3a5dd1077b2a2",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1004.png",
+      "upstream_object_counts": {
+        "helmet": 5
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4373",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4373.png",
+      "media_sha256": "e0b5fe4588dd8ccc2086db83f7928fc35b124f94ddadbf107911e641ffb2f761",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4373.png",
+      "upstream_object_counts": {
+        "helmet": 6
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4741",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4741.png",
+      "media_sha256": "ae4d28d2606cee316b7677c2711f40b250a6e435ffa20667836dbf4e20f9e84d",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4741.png",
+      "upstream_object_counts": {
+        "helmet": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3263",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3263.png",
+      "media_sha256": "c9c0662653cf4064890e14402434d79728d068f6a05cfdba7d732dfdafbecd9e",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3263.png",
+      "upstream_object_counts": {
+        "helmet": 1
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1900",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1900.png",
+      "media_sha256": "ad72226e203b11ec342e1b8366d1f8e0fb8e1a7fd66df9cbd137dab4aff5856f",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1900.png",
+      "upstream_object_counts": {
+        "helmet": 4
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers676",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers676.png",
+      "media_sha256": "1d2487c82daafc080a30a9a149ef7460ce176050d19075b9a70663043cd90420",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers676.png",
+      "upstream_object_counts": {
+        "helmet": 2,
+        "head": 6
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4424",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4424.png",
+      "media_sha256": "650c45902af8d9408d1dd58f414a72b55143c3debe866c82eb13027856a6c11f",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4424.png",
+      "upstream_object_counts": {
+        "helmet": 15,
+        "head": 4
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2615",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2615.png",
+      "media_sha256": "f27bd895dbd36f27abd871e139af88ab8644ec87c64458e97ed9e93500d1cec1",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2615.png",
+      "upstream_object_counts": {
+        "helmet": 4
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4866",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4866.png",
+      "media_sha256": "53ed47df7718d3e2aa1af3cec038b6a406a891105432e91a0b8396c0b67df774",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4866.png",
+      "upstream_object_counts": {
+        "helmet": 2,
+        "head": 16
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers497",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers497.png",
+      "media_sha256": "f189045f595a842d0a5bc31cd10371d9bd3cdb840281df17562dfe63b276eeeb",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers497.png",
+      "upstream_object_counts": {
+        "head": 1
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4283",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4283.png",
+      "media_sha256": "5bf8578b3171fe07b12fb5ac4835208fda393bfb9a9060ca220f3bf4838d7d73",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4283.png",
+      "upstream_object_counts": {
+        "helmet": 8
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4661",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4661.png",
+      "media_sha256": "259f451a56e786fa6d73c1f93f28d5c3153a9c8a44f1fdb38d2088190fd88c2d",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4661.png",
+      "upstream_object_counts": {
+        "helmet": 3,
+        "head": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2419",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2419.png",
+      "media_sha256": "a26ff48beba5900064d7fc2ed6e51c35f3924ae61d694d97b2b07b4db4d7ad5a",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2419.png",
+      "upstream_object_counts": {
+        "helmet": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3923",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3923.png",
+      "media_sha256": "ccc5e7baa6eaad96a76fa016f8be8174ed1a237cde15f8258dcdd80f2fed35f4",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3923.png",
+      "upstream_object_counts": {
+        "head": 6
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2094",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2094.png",
+      "media_sha256": "dcd2807b9ac4ada6a9bc35b86be4a3426684f18ab2bd3f58f72018dda5e39cd9",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2094.png",
+      "upstream_object_counts": {
+        "helmet": 10,
+        "head": 1
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3411",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3411.png",
+      "media_sha256": "5fa23ab8f4596cd42635c62708da44f1227e4e504db89e788a4dfbeb29b9c10b",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3411.png",
+      "upstream_object_counts": {
+        "helmet": 3
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4143",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4143.png",
+      "media_sha256": "c136ff79f6c120692b06396dac0cce6d22da4c4466806a40e2ae9e3b633121f1",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4143.png",
+      "upstream_object_counts": {
+        "head": 10
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1130",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1130.png",
+      "media_sha256": "d5fa12bc40b07978f4ef138b8b4f0a885439bafda52f3037a265c53c3756a81d",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1130.png",
+      "upstream_object_counts": {
+        "helmet": 1,
+        "head": 4
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1099",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1099.png",
+      "media_sha256": "0cb46c0ff608471de4c6a88e04fa8e098a22c1a5cfc0b5ae075b30d329aeb700",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1099.png",
+      "upstream_object_counts": {
+        "head": 4
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3335",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3335.png",
+      "media_sha256": "150aea0c86a546c184fab993f0c35fc0d0a15ed9b4cb97f7409336c5da9ae924",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3335.png",
+      "upstream_object_counts": {
+        "helmet": 5,
+        "head": 7
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2507",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2507.png",
+      "media_sha256": "5ff1fd8639db607e23c799ae169fa5e3d3437cadb263d565a474c3355456d217",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2507.png",
+      "upstream_object_counts": {
+        "helmet": 4
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4837",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4837.png",
+      "media_sha256": "79b1a18c88952a5abe6b2591de940604fcfd416a24aa5152ddb847050fe3cef8",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4837.png",
+      "upstream_object_counts": {
+        "helmet": 1
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1915",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1915.png",
+      "media_sha256": "74dee1cf3e5804da2821e1c415e8f7d2346f66dd34f61861e42dc7d7d2b55bbd",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1915.png",
+      "upstream_object_counts": {
+        "head": 7
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2464",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2464.png",
+      "media_sha256": "23aa2815dd14f8e9cedb05d1af9a9a919f8e86e10acffe6f294400cc1759f3d6",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2464.png",
+      "upstream_object_counts": {
+        "helmet": 10
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers4891",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers4891.png",
+      "media_sha256": "a45a152b4a8b3aa4b7d764015a39652006580c9e979f2641f42ae00a14575d51",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers4891.png",
+      "upstream_object_counts": {
+        "helmet": 1
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers109",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers109.png",
+      "media_sha256": "db4692510945aeb185e9136e11c9944e8fb75a2e672bfd65853f744d180170cf",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers109.png",
+      "upstream_object_counts": {
+        "helmet": 4
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2703",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2703.png",
+      "media_sha256": "0eafa6bc77f9d8384d8ba6f8bca8068f86f7c744e974738a909d3987c7027d92",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2703.png",
+      "upstream_object_counts": {
+        "helmet": 8,
+        "head": 7
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2455",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2455.png",
+      "media_sha256": "bacb5f7c1b9d0a5d65c87dfdee9c229994558695e5934be11e35561a595adfd8",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2455.png",
+      "upstream_object_counts": {
+        "helmet": 9,
+        "head": 1
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3287",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3287.png",
+      "media_sha256": "187a8cb63beed36c14e994c3e9fb35fd31f5ff0783538d0e888e497fa54f4e57",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3287.png",
+      "upstream_object_counts": {
+        "helmet": 2
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers691",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers691.png",
+      "media_sha256": "e0e8849753cad2d6eff2f2f802e87ec53436f36c5897843021df180f939d716a",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers691.png",
+      "upstream_object_counts": {
+        "helmet": 4,
+        "head": 1
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1395",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1395.png",
+      "media_sha256": "0c32accb32d5466e7e6089a26ff909ca8d1c1e2b5fa6ed57fe9a117fc7d6023d",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1395.png",
+      "upstream_object_counts": {
+        "head": 6
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers242",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers242.png",
+      "media_sha256": "6667591d455260aff4f655e11a02d09c4edc9ada30b6959124fe6b338b8ad008",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers242.png",
+      "upstream_object_counts": {
+        "helmet": 1,
+        "head": 5
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers1703",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers1703.png",
+      "media_sha256": "c10d3bd4d5bc659ffa33799bab6ba7b0b386cbdc0edb70979c1336adfd2243da",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers1703.png",
+      "upstream_object_counts": {
+        "helmet": 7,
+        "head": 4
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2280",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2280.png",
+      "media_sha256": "20015fa605c1b7bc78bea4df149a1c93a0679c3c546955761f56a017c9b78090",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2280.png",
+      "upstream_object_counts": {
+        "helmet": 6
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers952",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers952.png",
+      "media_sha256": "6c5a459edb880c6fa65704f02746eeafa4e6b0031c3e28ed40ff6901fd604da2",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers952.png",
+      "upstream_object_counts": {
+        "helmet": 1
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3102",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3102.png",
+      "media_sha256": "d2ebdf7e4bbffa2556b5eb9662780ce56c75aeed82338516d835f815ec896833",
+      "is_hazardous": true,
+      "events": [
+        "ppe_violation"
+      ],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3102.png",
+      "upstream_object_counts": {
+        "head": 10
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers3752",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers3752.png",
+      "media_sha256": "bc01520b66e91facf554eb11fb8bdd06cc59293bdfea3d22c126bf0366a2b615",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers3752.png",
+      "upstream_object_counts": {
+        "helmet": 3
+      }
+    },
+    {
+      "id": "public-ppe:hard_hat_workers2227",
+      "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+      "media_path": "../data/public_ppe/images/hard_hat_workers2227.png",
+      "media_sha256": "a18161cb4bcf746189ce922553e2275676d9bda56109dd52def624011843dccd",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+      "upstream_path": "data/hard_hat_workers2227.png",
+      "upstream_object_counts": {
+        "helmet": 6
+      }
+    }
+  ]
+}

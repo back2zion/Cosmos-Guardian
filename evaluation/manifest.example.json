@@ -1,0 +1,21 @@
+{
+  "description": "Schema example only. Replace with independently reviewed, real held-out media; paths do not exist.",
+  "samples": [
+    {
+      "id": "replace-with-hazard-sample-id",
+      "group_id": "replace-with-original-recording-or-site-session-id",
+      "media_path": "../data/heldout/hazard.mp4",
+      "is_hazardous": true,
+      "events": ["entrapment"],
+      "annotation_source": "Replace with reviewer ID, annotation date and source"
+    },
+    {
+      "id": "replace-with-safe-sample-id",
+      "group_id": "replace-with-another-original-session-id",
+      "media_path": "../data/heldout/safe.mp4",
+      "is_hazardous": false,
+      "events": [],
+      "annotation_source": "Replace with reviewer ID, annotation date and source"
+    }
+  ]
+}

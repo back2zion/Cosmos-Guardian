@@ -1,0 +1,912 @@
+{
+  "status": "running",
+  "setup": {
+    "ready": true,
+    "errors": [],
+    "samples": 100,
+    "training_samples": 0,
+    "mode": "base-only",
+    "group_and_hash_holdout_checked": false,
+    "safety_context": "Evaluate ONLY safety helmet compliance for visible people. Report a ppe_violation hazard when at least one visible head lacks a safety helmet. If all visible heads wear safety helmets, return hazards_detected as an empty list. Exclude other equipment, machinery, fall, electrical or site hazards from this assessment. This assessment does not determine overall site safety.",
+    "scope": "Helmet presence only; negative means no unprotected head annotated, not a safe worksite",
+    "dataset_limitations": [
+      "Targets are upstream annotations, not independent review by an industrial safety expert.",
+      "Original session groups are unavailable; all samples share one conservative unknown-session group.",
+      "Exact duplicate files are removed; near-duplicates and pretraining overlap are not verified.",
+      "Only base-model evaluation is immediately available; no project LoRA weights are supplied.",
+      "The upstream dataset calls its only split train; this project does not train on this selected evaluation subset."
+    ],
+    "manifest": "/home/woodcross/Cosmos-Guardian/evaluation/public_ppe_test_v1.json",
+    "adapter": "/home/woodcross/Cosmos-Guardian/outputs/cosmos-reason2-2b-safety-lora",
+    "seed": 0,
+    "timestamp": "20261009T072627Z",
+    "git_revision": "4c0cf63fb412462cf0653b11616c79a04b67f1dc",
+    "working_tree_dirty": true,
+    "python": "3.10.12",
+    "torch": "2.9.0+cu128",
+    "transformers": "4.57.6",
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "manifest_sha256": "f4755dce6a18aac2692dc3df7bd9e644f9922be658df3dd28e00b3c58cfc6e86",
+    "prompt_sha256": "ac8df15079863ba3e4b66d853777b01f42eff56f90124b44c71cbb8b8b12653e",
+    "profile": "helmet",
+    "development_manifest_sha256": "cc81d3ce1564c2ae6e3451c607c24b4e93f105dc2b10098a97a6e9c915d20ea8",
+    "agent_code_sha256": "9d9652af94c8ec79ea3270dad5263e44520712242ee16be2191392430a5c90e1",
+    "evaluation_code_sha256": "0c7b24c907ef2ca0acc039044b2e6ab0d639d4a25b8d62ffaab612af564723ff",
+    "benchmark_code_sha256": "b514a8d013a41b4df3d9705e2b378468f3708285d56b0898440b0b397db92791",
+    "adapter_sha256": null,
+    "training_manifest_sha256": null,
+    "label_grounding": false,
+    "classification": "exact event_type categories; unclassified outputs count as mismatches",
+    "source_sha256": {
+      "core/agent.py": "9d9652af94c8ec79ea3270dad5263e44520712242ee16be2191392430a5c90e1",
+      "core/evaluation.py": "0c7b24c907ef2ca0acc039044b2e6ab0d639d4a25b8d62ffaab612af564723ff",
+      "scripts/benchmark.py": "b514a8d013a41b4df3d9705e2b378468f3708285d56b0898440b0b397db92791",
+      "prompts/safety_inspector.yaml": "1c0b2804224206f032040cba0d5d7e65db8c63a1b6cdcc30fc806213d2831346",
+      "pyproject.toml": "d1e6b8d7b42b3e9a2675571e422d4e0bf93ee244232e21ed0d3d9c84135c532c",
+      "uv.lock": "d863b4ccc6b360aea4dd6cf39af7211bdb4fc830bbc80cb9c160f29d9551a246",
+      "core/helmet.py": "b0306c627f74b5e7682613971a5c87d1e8c8d9ff2a3fb1012054f4899b238fd3",
+      "core/helmet_agent.py": "aeaff6cc34474b7edc7f351f03ead20bf64e15fe64a6c8f6de0c290f2e1ceebf",
+      "prompts/helmet_inspector.yaml": "ac8df15079863ba3e4b66d853777b01f42eff56f90124b44c71cbb8b8b12653e"
+    },
+    "base_model_id": "nvidia/Cosmos-Reason2-2B",
+    "base_model_revision": "9ce19a195e423419c349abfc86fd07178b230561"
+  },
+  "summary": {},
+  "details": {
+    "base": [
+      {
+        "id": "public-ppe:hard_hat_workers1907",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers1907.png",
+        "media_sha256": "e1e033be2c3343ed33d68f5c22bc4038ef03f200fc97ff7d17e477f079f41e5a",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1907.png",
+        "upstream_object_counts": {
+          "helmet": 4
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "ppe_violation"
+        ],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "violation",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [
+            {
+              "type": "안전모 미착용 의심",
+              "event_type": "ppe_violation",
+              "severity": "NeedsReview",
+              "description": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요."
+            }
+          ],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "YES",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 19.193
+          }
+        },
+        "latency_seconds": 19.193
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4616",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers4616.png",
+        "media_sha256": "00dd001a6552b6172d0126a9c86e0ef442c415204b35d1d5ae1b86f7c3fc6689",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4616.png",
+        "upstream_object_counts": {
+          "helmet": 9,
+          "head": 1
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "clear",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "NO",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 9.763
+          }
+        },
+        "latency_seconds": 9.763
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1788",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers1788.png",
+        "media_sha256": "44aeeba3e95b33d93b765ae6f5018abcfef12ad4e5bf80f3fa950465a838a374",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1788.png",
+        "upstream_object_counts": {
+          "helmet": 4,
+          "head": 4
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "ppe_violation"
+        ],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "violation",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [
+            {
+              "type": "안전모 미착용 의심",
+              "event_type": "ppe_violation",
+              "severity": "NeedsReview",
+              "description": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요."
+            }
+          ],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "YES",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 9.155
+          }
+        },
+        "latency_seconds": 9.155
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2056",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers2056.png",
+        "media_sha256": "2036d51d70f32380a1d74ad2323e1498dfe4dfec617688e00ec293a0e931df49",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2056.png",
+        "upstream_object_counts": {
+          "head": 10
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "clear",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "NO",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 9.047
+          }
+        },
+        "latency_seconds": 9.047
+      },
+      {
+        "id": "public-ppe:hard_hat_workers70",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers70.png",
+        "media_sha256": "e16cba572e7d8089ccab5b485e014c3f8886ac05962d0cf8f81662eb30be22b4",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers70.png",
+        "upstream_object_counts": {
+          "head": 3
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "ppe_violation"
+        ],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "violation",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [
+            {
+              "type": "안전모 미착용 의심",
+              "event_type": "ppe_violation",
+              "severity": "NeedsReview",
+              "description": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요."
+            }
+          ],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "YES",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 12.625
+          }
+        },
+        "latency_seconds": 12.625
+      },
+      {
+        "id": "public-ppe:hard_hat_workers576",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers576.png",
+        "media_sha256": "4cf9ff7bcf73fee66e0378d6117c35ca52247daca92502d42e1142782dba662c",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers576.png",
+        "upstream_object_counts": {
+          "head": 3
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "clear",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "NO",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 11.24
+          }
+        },
+        "latency_seconds": 11.24
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3172",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers3172.png",
+        "media_sha256": "f7f67a9b78a898a891fe13f9dc143c6aa2b54a6ec56fecfcdb78bc71301bdd52",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3172.png",
+        "upstream_object_counts": {
+          "helmet": 14,
+          "head": 13
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "ppe_violation"
+        ],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "violation",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [
+            {
+              "type": "안전모 미착용 의심",
+              "event_type": "ppe_violation",
+              "severity": "NeedsReview",
+              "description": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요."
+            }
+          ],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "YES",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 13.438
+          }
+        },
+        "latency_seconds": 13.438
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3206",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers3206.png",
+        "media_sha256": "cfaaa5ff6ab019e451f65d63dc4d91327eb7f4e9d3c3fa315d7738692549dc3d",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3206.png",
+        "upstream_object_counts": {
+          "helmet": 1
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "clear",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "NO",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 12.196
+          }
+        },
+        "latency_seconds": 12.197
+      },
+      {
+        "id": "public-ppe:hard_hat_workers850",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers850.png",
+        "media_sha256": "11ddfd43087743670b540ffc9529e9900367d9284b1c2bc76aa2d5419a2a46da",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers850.png",
+        "upstream_object_counts": {
+          "helmet": 1
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "clear",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "NO",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 12.445
+          }
+        },
+        "latency_seconds": 12.445
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2634",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers2634.png",
+        "media_sha256": "efcfbdfe93b5428d9e5671f2257f7442ef174c82d66ef225979cbf5ac3cd23cd",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2634.png",
+        "upstream_object_counts": {
+          "head": 15
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "ppe_violation"
+        ],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "violation",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [
+            {
+              "type": "안전모 미착용 의심",
+              "event_type": "ppe_violation",
+              "severity": "NeedsReview",
+              "description": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요."
+            }
+          ],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "YES",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 14.739
+          }
+        },
+        "latency_seconds": 14.739
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3891",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers3891.png",
+        "media_sha256": "6a69b0f0cb7d0cdea6b46cbf503ef640aa57cf3a89241e806b8debeec754ea91",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3891.png",
+        "upstream_object_counts": {
+          "helmet": 1
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "clear",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "NO",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 14.824
+          }
+        },
+        "latency_seconds": 14.824
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3202",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers3202.png",
+        "media_sha256": "3d50e06faedf635a13643e8eab58f45c408390d3a20882f3a26d02dad02dad8a",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3202.png",
+        "upstream_object_counts": {
+          "head": 2
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "ppe_violation"
+        ],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "violation",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [
+            {
+              "type": "안전모 미착용 의심",
+              "event_type": "ppe_violation",
+              "severity": "NeedsReview",
+              "description": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요."
+            }
+          ],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "YES",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 17.087
+          }
+        },
+        "latency_seconds": 17.088
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1450",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers1450.png",
+        "media_sha256": "dd422876ea09e4478cb71853c9d5ca5f61e6488ca73cc1d8d4568e525cd2649b",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1450.png",
+        "upstream_object_counts": {
+          "helmet": 1
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "clear",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "NO",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 19.333
+          }
+        },
+        "latency_seconds": 19.333
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4838",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers4838.png",
+        "media_sha256": "db1b3328df4ae36f90735dd67892d42f37e15dba9bd497eae31b5ddecdb819a5",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4838.png",
+        "upstream_object_counts": {
+          "helmet": 6,
+          "head": 1
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "clear",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "NO",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 18.265
+          }
+        },
+        "latency_seconds": 18.271
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2083",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers2083.png",
+        "media_sha256": "cf3ca76e6a418ce7aa3957fb0bd7fe48af45fc32aa2253482d454f6826c2d23b",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2083.png",
+        "upstream_object_counts": {
+          "helmet": 15
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "clear",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "NO",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 19.991
+          }
+        },
+        "latency_seconds": 19.992
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2278",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers2278.png",
+        "media_sha256": "0cc74f98d05d42c71e5288c459c23087473b362320a04a6564d7f661cf002204",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2278.png",
+        "upstream_object_counts": {
+          "helmet": 14
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "ppe_violation"
+        ],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "violation",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [
+            {
+              "type": "안전모 미착용 의심",
+              "event_type": "ppe_violation",
+              "severity": "NeedsReview",
+              "description": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요."
+            }
+          ],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "YES",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 14.906
+          }
+        },
+        "latency_seconds": 15.229
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2190",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers2190.png",
+        "media_sha256": "12e2a7a758363a46a366e3b35c591d90240bf2c6bbe090008807a74f60223436",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2190.png",
+        "upstream_object_counts": {
+          "head": 8
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "clear",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "NO",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 13.426
+          }
+        },
+        "latency_seconds": 13.426
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1684",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers1684.png",
+        "media_sha256": "6b414a3eff88cbbcea1ce271fbbd6372558c98b75cc44ecebf6472a3688500ee",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1684.png",
+        "upstream_object_counts": {
+          "helmet": 3
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "ppe_violation"
+        ],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "violation",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [
+            {
+              "type": "안전모 미착용 의심",
+              "event_type": "ppe_violation",
+              "severity": "NeedsReview",
+              "description": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요."
+            }
+          ],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "YES",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 14.208
+          }
+        },
+        "latency_seconds": 14.209
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4099",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers4099.png",
+        "media_sha256": "a842d692a0ca8335486f651fb46e05bc5e7cdb52d7349da8321a0657632ae330",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4099.png",
+        "upstream_object_counts": {
+          "helmet": 1,
+          "head": 9
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "clear",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "NO",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 11.132
+          }
+        },
+        "latency_seconds": 11.134
+      },
+      {
+        "id": "public-ppe:hard_hat_workers561",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers561.png",
+        "media_sha256": "1ebb59dc450cceb3b597e9aa7ef5c52c5ba9a194ea030d638ec0eba00b7cb701",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers561.png",
+        "upstream_object_counts": {
+          "head": 9
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "ppe_violation"
+        ],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "violation",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [
+            {
+              "type": "안전모 미착용 의심",
+              "event_type": "ppe_violation",
+              "severity": "NeedsReview",
+              "description": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요."
+            }
+          ],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "YES",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 14.365
+          }
+        },
+        "latency_seconds": 14.365
+      },
+      {
+        "id": "public-ppe:hard_hat_workers363",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers363.png",
+        "media_sha256": "d5e2b21e30538fb09079badd6998200ced41897987a61fc128ffea29bf2b652f",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers363.png",
+        "upstream_object_counts": {
+          "helmet": 1
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "clear",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "NO",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 11.711
+          }
+        },
+        "latency_seconds": 11.712
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1034",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers1034.png",
+        "media_sha256": "8a563cd8cdfe93646d53dfc950203499daebe07a36f88ac574dfcece2368813b",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1034.png",
+        "upstream_object_counts": {
+          "head": 12
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "clear",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "NO",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 14.313
+          }
+        },
+        "latency_seconds": 14.314
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2612",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers2612.png",
+        "media_sha256": "e184d8ebbe7b96e91f62d7d4c585d60b282244b2aab3cb752f1ea352f21f6ea5",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2612.png",
+        "upstream_object_counts": {
+          "helmet": 4
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "profile": "helmet-v1",
+          "assessment_status": "clear",
+          "scope": "안전모 착용 의무 구역의 이미지 판별만 포함 · 전체 현장 안전 판단 아님",
+          "evidence": "이미지 단위 판별 결과입니다. 사람별 위치·검출 박스는 제공하지 않으므로 원본을 직접 확인하세요.",
+          "requires_human_review": true,
+          "hazards_detected": [],
+          "recommendation": "원본에서 착용 여부와 현장 착용 기준을 확인하세요. 가능성·중대성은 담당자가 평가합니다.",
+          "model_answer": "NO",
+          "evidence_kind": "image_classification_without_localization",
+          "inference": {
+            "input_tokens": 274,
+            "output_tokens": 2,
+            "elapsed_seconds": 14.698
+          }
+        },
+        "latency_seconds": 14.7
+      }
+    ]
+  },
+  "progress": {
+    "mode": "base",
+    "completed_samples": 23,
+    "total_samples": 100
+  }
+}

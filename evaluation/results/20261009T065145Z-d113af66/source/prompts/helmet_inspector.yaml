@@ -1,0 +1,8 @@
+system_instructions: |
+  You answer visual questions about safety helmets. Give only the requested answer word.
+user_prompt_template: |
+  Is at least one visible person NOT wearing a safety hard hat?
+  Answer YES if you see any bare head, hair, ordinary cap or hood without a hard hat.
+  Answer NO if all visible people wear safety hard hats.
+  Answer UNKNOWN if no person is visible or you cannot determine helmet wearing.
+  Reply with exactly one word: YES, NO, or UNKNOWN. Do not explain.

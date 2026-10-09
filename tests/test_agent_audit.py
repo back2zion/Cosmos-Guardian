@@ -85,6 +85,32 @@ def test_disabled_audit_preserves_complete_and_does_not_hash(agent_runtime, monk
     assert events[-1] == {"stage": "complete", "result": {"overall_safety_score": 80}}
 
 
+def test_generation_failure_ends_stream_and_propagates(agent_runtime, monkeypatch):
+    agent = agent_runtime.make_agent()
+
+    class Stream:
+        ended = False
+
+        def __iter__(self):
+            return iter(())
+
+        def end(self):
+            self.ended = True
+
+    stream = Stream()
+
+    def fail(**kwargs):
+        raise RuntimeError("GPU inference failure")
+
+    monkeypatch.setattr(agent.model, "generate", fail)
+    monkeypatch.setattr(agent_runtime.module.transformers, "TextIteratorStreamer", lambda *args, **kwargs: stream)
+    events = []
+    with pytest.raises(RuntimeError, match="GPU inference failure"):
+        events.extend(agent.analyze_media("unused.png"))
+    assert stream.ended
+    assert all(event["stage"] != "complete" for event in events)
+
+
 @pytest.mark.parametrize("grounding", [False, True])
 def test_audit_tracks_actual_input_prompts_and_output(agent_runtime, tmp_path, grounding):
     media = tmp_path / "camera.png"

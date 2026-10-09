@@ -1,0 +1,42 @@
+name: cosmos-guardian
+services:
+  api:
+    build:
+      context: .
+      target: api
+    restart: unless-stopped
+    env_file: ${COSMOS_ENV_FILE:-.env}
+    environment:
+      COSMOS_WORKFLOW_DB: /app/data/workflow.sqlite3
+      COSMOS_UPLOAD_DIR: /app/uploads
+      COSMOS_AUDIT_LOG: /app/audit/decisions.jsonl
+    ports:
+      - "127.0.0.1:8888:8888"
+    volumes:
+      - product-data:/app/data
+      - product-uploads:/app/uploads
+      - product-audit:/app/audit
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+  worker:
+    profiles: [inference]
+    build:
+      context: .
+      target: worker
+    restart: unless-stopped
+    environment:
+      COSMOS_WORKFLOW_DB: /app/data/workflow.sqlite3
+      COSMOS_UPLOAD_DIR: /app/uploads
+      COSMOS_JOB_TIMEOUT_SECONDS: "300"
+      COSMOS_INFERENCE_ENABLED: "1"
+    gpus: all
+    volumes:
+      - product-data:/app/data
+      - product-uploads:/app/uploads
+      - ./data/huggingface:/app/data/huggingface:ro
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+volumes:
+  product-data:
+  product-uploads:
+  product-audit:

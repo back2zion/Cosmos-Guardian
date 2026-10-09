@@ -1,0 +1,2886 @@
+{
+  "status": "completed_with_errors",
+  "setup": {
+    "ready": true,
+    "errors": [],
+    "samples": 100,
+    "training_samples": 0,
+    "mode": "base-only",
+    "group_and_hash_holdout_checked": false,
+    "safety_context": "Evaluate ONLY safety helmet compliance for visible people. Report a ppe_violation hazard when at least one visible head lacks a safety helmet. If all visible heads wear safety helmets, return hazards_detected as an empty list. Exclude other equipment, machinery, fall, electrical or site hazards from this assessment. This assessment does not determine overall site safety.",
+    "scope": "Helmet presence only; negative means no unprotected head annotated, not a safe worksite",
+    "dataset_limitations": [
+      "Targets are upstream annotations, not independent review by an industrial safety expert.",
+      "Original session groups are unavailable; all samples share one conservative unknown-session group.",
+      "Exact duplicate files are removed; near-duplicates and pretraining overlap are not verified.",
+      "Only base-model evaluation is immediately available; no project LoRA weights are supplied.",
+      "The upstream dataset calls its only split train; this project does not train on this selected evaluation subset."
+    ],
+    "manifest": "/home/woodcross/Cosmos-Guardian/evaluation/public_ppe_manifest.json",
+    "adapter": "/home/woodcross/Cosmos-Guardian/outputs/cosmos-reason2-2b-safety-lora",
+    "seed": 0,
+    "timestamp": "20261009T030509Z",
+    "git_revision": "4c0cf63fb412462cf0653b11616c79a04b67f1dc",
+    "working_tree_dirty": true,
+    "python": "3.10.12",
+    "torch": "2.9.0+cu128",
+    "transformers": "5.1.0",
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "manifest_sha256": "8e6ea875022830803c7143cf59ca83eddec95beec9c624646d02376169c9a239",
+    "prompt_sha256": "1c0b2804224206f032040cba0d5d7e65db8c63a1b6cdcc30fc806213d2831346",
+    "agent_code_sha256": "9d9652af94c8ec79ea3270dad5263e44520712242ee16be2191392430a5c90e1",
+    "evaluation_code_sha256": "8a5b93aba87ab7be5fb18ea2d99f622da64232fe15d6cccdd888241164dab08b",
+    "benchmark_code_sha256": "f671d7f8168b606d191f86a33675bf3d31bb504ae06fee7bfe21df3ef5b5567c",
+    "adapter_sha256": null,
+    "training_manifest_sha256": null,
+    "label_grounding": false,
+    "classification": "exact event_type categories; unclassified outputs count as mismatches",
+    "base_model_id": "nvidia/Cosmos-Reason2-2B",
+    "base_model_revision": "9ce19a195e423419c349abfc86fd07178b230561"
+  },
+  "summary": {
+    "base": {
+      "samples": 100,
+      "hazardous_samples": 50,
+      "safe_samples": 50,
+      "confusion": {
+        "tp": 14,
+        "fp": 26,
+        "tn": 18,
+        "fn": 28,
+        "invalid_hazardous": 8,
+        "invalid_safe": 6
+      },
+      "valid_output_rate": 0.86,
+      "precision": 0.35,
+      "recall_valid_outputs": 0.333333,
+      "effective_recall_including_failures": 0.28,
+      "false_positive_rate_valid_outputs": 0.590909,
+      "event_exact_match_rate": 0.18,
+      "per_event_valid_outputs": {
+        "entrapment": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "fall": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "other": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "ppe_violation": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 42
+        },
+        "struck_by": {
+          "tp": 0,
+          "fp": 40,
+          "fn": 0
+        }
+      },
+      "mean_latency_seconds": 22.486,
+      "p95_latency_seconds": 52.034,
+      "latency_scope": "successful analysis only, full pipeline excluding model loading"
+    }
+  },
+  "details": {
+    "base": [
+      {
+        "id": "public-ppe:hard_hat_workers4669",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4669.png",
+        "media_sha256": "95cf29d7bb94fa425acfbf13272286474d23cc61b9ac119bbcc4169d08019134",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4669.png",
+        "upstream_object_counts": {
+          "helmet": 6
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 21.655
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3654",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3654.png",
+        "media_sha256": "87e08eb69d70e4fa13759d9f6fed4d26354ac7d6d2af40a4166b7d663b79c4ce",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3654.png",
+        "upstream_object_counts": {
+          "helmet": 1
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "The person wearing a red hard hat is struck by a moving object, resulting in potential injury due to the sudden impact and loss of balance caused by the collision.",
+              "reasoning": "The striking object possesses significant momentum and velocity, transferring kinetic energy to the worker's body upon contact. The impact causes structural deformation and disrupts the worker’s posture, leading to a loss of balance and increased risk of injury. Inertia plays a critical role here, as the worker's body resists the sudden change in motion, exacerbating the severity of the strike. The proximity of the striking object to the worker's torso creates a direct line of attack, making the situation particularly dangerous.",
+              "dynamic_prediction": "The worker will experience a violent deceleration, potentially leading to fractures, head injuries, or internal organ damage depending on the angle and speed of the strike."
+            }
+          ]
+        },
+        "latency_seconds": 28.17
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3198",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3198.png",
+        "media_sha256": "829b7afc1fd925644ec723ede33a98f51e8beb06675fba3aaa3c24b82324d0eb",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3198.png",
+        "upstream_object_counts": {
+          "head": 11
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 11.563
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1435",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1435.png",
+        "media_sha256": "7800ae7fd89f8ca5c4ba6e5c14f600a37b94e587f11147d8601e611a056c515a",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1435.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 40.307
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3882",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3882.png",
+        "media_sha256": "73e708048dd196966a05d64a2375fb532a6ca79526f78a5289ab693331b3cd90",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3882.png",
+        "upstream_object_counts": {
+          "helmet": 4
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a blue jacket is struck by a piece of machinery while working in a snowy environment",
+              "reasoning": "The worker’s body is positioned within the machine’s operational area, where it could be struck by moving parts. The machine has significant momentum due to its weight and speed, which can cause severe injury upon impact. Inertia causes the worker’s body to resist sudden changes in motion, but once contact occurs, the resulting kinetic energy leads to potential fatal injuries. The snow-covered ground may obscure movement, increasing the risk of accidental strikes during operation",
+              "dynamic_prediction": "Severe mechanical damage to the worker’s torso and limb, leading to life-threatening trauma."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing an orange vest is struck by a piece of machinery while working in a snowy environment",
+              "reasoning": "The worker’s body is positioned within the machine’s operational area, where it could be struck by moving parts. The machine has significant momentum due to its weight and speed, which can cause severe injury upon impact. Inertia causes the worker’s body to resist sudden changes in motion, but once contact occurs, the resulting kinetic energy leads to potential fatal injuries. The snow-covered ground may obscure movement, increasing the risk of accidental strikes during operation",
+              "dynamic_prediction": "Severe mechanical damage to the worker’s torso and limb, leading to life-threatening trauma."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Install protective barriers around the machinery to prevent workers from entering its operational zone. Conduct regular safety training to ensure proper awareness of potential collision points."
+        },
+        "latency_seconds": 37.108
+      },
+      {
+        "id": "public-ppe:hard_hat_workers932",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers932.png",
+        "media_sha256": "02d65a90a4ca6b93e101491b470637048902e17ad017418f2d6befb7fd3bdc6c",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers932.png",
+        "upstream_object_counts": {
+          "head": 14
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 10.151
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4044",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4044.png",
+        "media_sha256": "6736e71f209ed24ea799b22bb660fc5d81d7e8729ede454d1a9556ce747f01bc",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4044.png",
+        "upstream_object_counts": {
+          "helmet": 1,
+          "head": 10
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.865
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1122",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1122.png",
+        "media_sha256": "1e838c9476e78ca86d0ed1e8a865768803da56832b2677ec34f485ceb4510bd1",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1122.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "The worker is struck by the yellow helmet, causing injury due to its sudden impact and proximity to their body.",
+              "reasoning": "The worker’s head is directly impacted by the yellow helmet, which is part of the machine’s operational system. The helmet moves rapidly, transferring significant kinetic energy to the worker’s head. Inertia causes the helmet to decelerate abruptly upon contact, leading to a violent impact that could result in severe injury or death. The close proximity of the helmet to the worker’s head creates a critical collision risk, violating proper safety protocols where protective gear should be worn correctly and remain clear of operational areas."
+            }
+          ]
+        },
+        "latency_seconds": 21.329
+      },
+      {
+        "id": "public-ppe:hard_hat_workers871",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers871.png",
+        "media_sha256": "f57f202bdadb4084bf187109cd2be217685ecd055368e4a6a57328d8ca733b2c",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers871.png",
+        "upstream_object_counts": {
+          "helmet": 2,
+          "head": 7
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a red hard hat is standing close to a heavy machinery component, exposing their head to potential collision risk due to proximity and lack of protective gear beyond the helmet itself.",
+              "reasoning": "The individual's head is positioned directly adjacent to a moving or operational part of the machinery, which could result in a severe impact if the machine were to malfunction or move unexpectedly. The absence of additional protective measures such as face shields or body armor increases vulnerability to injury during any sudden movement or failure of the machinery. Inertia and momentum transfer would cause significant force upon contact, leading to potential traumatic brain injuries or head trauma. Structural compression may also occur if the machinery’s components collide with the unprotected head area, exacerbating the severity of the incident. The situation demands immediate attention to ensure proper protective equipment is worn and that the workspace remains clear of unnecessary personnel near active machinery."
+            }
+          ]
+        },
+        "latency_seconds": 24.569
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3783",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3783.png",
+        "media_sha256": "119d20d6beb174deba5fcd82f3fbf42dc596a589fe9eef1b482c15f6bdc6f406",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3783.png",
+        "upstream_object_counts": {
+          "head": 13
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.682
+      },
+      {
+        "id": "public-ppe:hard_hat_workers108",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers108.png",
+        "media_sha256": "e03f4944b8763b723df3de47d700ec5b9216cfba9a0d34517f3602d2cff0789a",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers108.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.684
+      },
+      {
+        "id": "public-ppe:hard_hat_workers570",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers570.png",
+        "media_sha256": "0451c31b0456891b5bddc4dfb5fee9ff9ba99ba989f6f751cae92a8ea49dab1e",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers570.png",
+        "upstream_object_counts": {
+          "helmet": 4,
+          "head": 6
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 98.81
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2580",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2580.png",
+        "media_sha256": "056eb33caef169c6c27c2620b18227f2e6ac2d4ac8a5325bd1e99cdd9d79a4ee",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2580.png",
+        "upstream_object_counts": {
+          "helmet": 4,
+          "head": 4
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.517
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3881",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3881.png",
+        "media_sha256": "f102e4b74e211384778ec4f54b7e9f95cc18144eeb4d45f3c8274e6954f4d81b",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3881.png",
+        "upstream_object_counts": {
+          "helmet": 9
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow hard hat is struck by a red machine component, resulting in potential injury due to the sudden impact and loss of balance caused by the collision.",
+              "reasoning": "The striking action transfers significant momentum from the machine to the worker, causing abrupt deceleration and possible structural damage to both the machine and the individual. The proximity of the worker’s body to the moving part increases the risk of severe injury during the collision event, as inertia causes the worker to react unpredictably upon contact with the fast-moving object. The combination of high-speed impact and close physical proximity creates a critical safety violation that demands immediate attention and corrective measures to prevent future incidents."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white hard hat is struck by a red machine component, leading to potential injury due to the sudden impact and loss of balance caused by the collision.",
+              "reasoning": "The striking action transfers significant momentum from the machine to the worker, causing abrupt deceleration and possible structural damage to both the machine and the individual. The proximity of the worker’s body to the moving part increases the risk of severe injury during the collision event, as inertia causes the worker to react unpredictably upon contact with the fast-moving object. The combination of high-speed impact and close physical proximity creates a critical safety violation that demands immediate attention and corrective measures to prevent future incidents."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white hard hat is struck by a red machine component, leading to potential injury due to the sudden impact and loss of balance caused by the collision.",
+              "reasoning": "The striking action transfers significant momentum from the machine to the worker, causing abrupt deceleration and possible structural damage to both the machine and the individual. The proximity of the worker’s body to the moving part increases the risk of severe injury during the collision event, as inertia causes the worker to react unpredictably upon contact with the fast-moving object. The combination of high-speed impact and close physical proximity creates a critical safety violation that demands immediate attention and corrective measures to prevent future incidents."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white hard hat is struck by a red machine component, leading to potential injury due to the sudden impact and loss of balance caused by the collision.",
+              "reasoning": "The striking action transfers significant momentum from the machine to the worker, causing abrupt deceleration and possible structural damage to both the machine and the individual. The proximity of the worker’s body to the moving part increases the risk of severe injury during the collision event, as inertia causes the worker to react unpredictably upon contact with the fast-moving object. The combination of high-speed impact and close physical proximity creates a critical safety violation that demands immediate attention and corrective measures to prevent future incidents."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white hard hat is struck by a red machine component, leading to potential injury due to the sudden impact and loss of balance caused by the collision.",
+              "reasoning": "The striking action transfers significant momentum from the machine to the worker, causing abrupt deceleration and possible structural damage to both the machine and the individual. The proximity of the worker’s body to the moving part increases the risk of severe injury during the collision event, as inertia causes the worker to react unpredictably upon contact with the fast-moving object. The combination of high-speed impact and close physical proximity creates a critical safety violation that demands immediate attention and corrective measures to prevent future incidents."
+            }
+          ],
+          "overall_safety_score": 50
+        },
+        "latency_seconds": 69.845
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2558",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2558.png",
+        "media_sha256": "79f246c0049a163fa61740f472d83778d75b4c56d1bb671734029f6310522feb",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2558.png",
+        "upstream_object_counts": {
+          "helmet": 6
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "The worker’s head is unprotected, exposing it directly to potential collision risks from moving parts or falling objects within the vicinity of the machinery being operated by the workers in blue uniforms and red helmets",
+              "reasoning": "The worker’s head is exposed without any protective gear, placing them directly in the line of action where sudden movements or impacts could occur. The worker is operating machinery that involves dynamic components, which can generate significant momentum and force. In the event of a malfunction or unexpected movement, the lack of a helmet creates a critical vulnerability due to the absence of protection against kinetic impact or debris. The proximity of the worker to the machinery increases the likelihood of a severe injury if such an incident were to happen, given the nature of the task and the inherent risks associated with handling heavy or fast-moving equipment. The combination of unprotected head and active machinery results in a high-severity hazard that demands immediate attention and corrective action to ensure personal safety."
+            }
+          ]
+        },
+        "latency_seconds": 23.578
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2849",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2849.png",
+        "media_sha256": "f72a59914d22cd71e1f3f534e0cedf3c2997b8f7f64b5c231d03232347f704bc",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2849.png",
+        "upstream_object_counts": {
+          "helmet": 4,
+          "head": 4
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 67.435
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4951",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4951.png",
+        "media_sha256": "35cc883bd2f035910a38a42c053d533ce8b7f5d2c75359e899a30553132fba0f",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4951.png",
+        "upstream_object_counts": {
+          "head": 8
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 10.819
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4983",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4983.png",
+        "media_sha256": "99ad625693648cf6b20d17e82b62c9e683beab326e5dbbb847d301244558b1cf",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4983.png",
+        "upstream_object_counts": {
+          "helmet": 3,
+          "head": 2
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 11.37
+      },
+      {
+        "id": "public-ppe:hard_hat_workers584",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers584.png",
+        "media_sha256": "6d6824acc6698e05d7afc3ce0a87ccf69d497aec12a09fada956862544849f35",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers584.png",
+        "upstream_object_counts": {
+          "helmet": 6
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 11.733
+      },
+      {
+        "id": "public-ppe:hard_hat_workers179",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers179.png",
+        "media_sha256": "b20b9cd510ca98e874e4b91cfedd8f3fc61b62c1e68204b7b0a11b14bfb6731c",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers179.png",
+        "upstream_object_counts": {
+          "helmet": 1,
+          "head": 7
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 11.485
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4341",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4341.png",
+        "media_sha256": "4c0f6149bf90a34ff291e4711ef239e23a6e559f61e0ba52eab6c73c8984fc62",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4341.png",
+        "upstream_object_counts": {
+          "helmet": 3,
+          "head": 1
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a red hard hat is struck by a falling box held above their head by another individual, resulting in potential head injury due to the sudden deceleration and impact forces involved in lifting and dropping the load",
+              "reasoning": "The worker holding the box above their head experiences upward momentum, which abruptly transfers downward upon release. The striking impact causes significant deceleration and kinetic energy transfer, leading to a critical risk of head injury if the box falls unexpectedly or if the worker loses balance during the lift. The height and speed of the box contribute to the severity of the collision, while the proximity of the worker’s head to the box increases the likelihood of injury",
+              "dynamic_prediction": "The worker will likely experience a violent deceleration and structural deformation due to the sudden stop, potentially causing severe head trauma depending on the exact moment of impact."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a red hard hat is struck by a falling box held above their head by another individual, resulting in potential head injury due to the sudden deceleration and impact forces involved in lifting and dropping the load",
+              "reasoning": "The worker holding the box above their head experiences upward momentum, which abruptly transfers downward upon release. The striking impact causes significant deceleration and kinetic energy transfer, leading to a critical risk of head injury if the box falls unexpectedly or if the worker loses balance during the lift. The height and speed of the box contribute to the severity of the collision, while the proximity of the worker’s head to the box increases the likelihood of injury",
+              "dynamic_prediction": "The worker will likely experience a violent deceleration and structural deformation due to the sudden stop, potentially causing severe head trauma depending on the exact moment of impact."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Ensure proper securing of loads before lifting, use of personal protective equipment (PPE), and training on safe handling procedures to prevent sudden releases and mitigate risks associated with lifting heavy objects."
+        },
+        "latency_seconds": 52.034
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4210",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4210.png",
+        "media_sha256": "25ed864aaa8cb32c592144cdb43da7e74edabd281320d3589cdcf065c8c33e25",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4210.png",
+        "upstream_object_counts": {
+          "helmet": 4
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow hard hat is struck by a vertical metal rod, resulting in potential head injury due to the sudden collision and loss of balance caused by the impact.",
+              "reasoning": "The striking action involves the transfer of momentum from the moving metal rod to the stationary worker’s head. The rod's velocity and mass create a significant force upon contact, leading to a critical risk of traumatic brain injury. Inertia plays a role here, as the worker's body resists the sudden change in motion, causing the head to decelerate rapidly during the strike. The proximity of the worker to the rod increases the likelihood of such an incident occurring without adequate protective gear like a helmet being worn properly or available."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a blue hard hat is struck by a vertical metal rod, resulting in potential head injury due to the sudden collision and loss of balance caused by the impact.",
+              "reasoning": "Similar to the previous instance, the striking action involves the transfer of momentum from the moving metal rod to the stationary worker’s head. The rod's velocity and mass create a significant force upon contact, leading to a critical risk of traumatic brain injury. Inertia plays a role here, as the worker's body resists the sudden change in motion, causing the head to decelerate rapidly during the strike. The proximity of the worker to the rod increases the likelihood of such an incident occurring without adequate protective gear like a helmet being worn properly or available."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow hard hat is struck by a vertical metal rod, resulting in potential head injury due to the sudden collision and loss of balance caused by the impact.",
+              "reasoning": "The striking action involves the transfer of momentum from the moving metal rod to the stationary worker’s head. The rod's velocity and mass create a significant force upon contact, leading to a critical risk of traumatic brain injury. Inertia plays a role here, as the worker's body resists the sudden change in motion, causing the head to decelerate rapidly during the strike. The proximity of the worker to the rod increases the likelihood of such an incident occurring without adequate protective gear like a helmet being worn properly or available."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Ensure all workers wear appropriate personal protective equipment, including hard hats, and maintain safe distances from moving parts. Install barriers or enclosures around hazardous areas to prevent accidental strikes."
+        },
+        "latency_seconds": 51.655
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2410",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2410.png",
+        "media_sha256": "4666dd08309580b46c0758cc8f3c53ba7a5ce905b64640e70ef0fe1dc4539445",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2410.png",
+        "upstream_object_counts": {
+          "head": 2,
+          "helmet": 2
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow hard hat is struck by a piece of falling debris during construction work, resulting in potential injury due to the sudden impact and loss of balance caused by the debris’s trajectory and speed.",
+              "reasoning": "The striking debris possesses significant kinetic energy due to its velocity and mass, which transfers abruptly upon contact with the worker’s head. The worker’s position and posture make them vulnerable to being struck, especially if they are moving or distracted. Inertia causes the worker to react quickly, potentially leading to a loss of balance and further injury. The debris’s trajectory is unpredictable, increasing the risk of collision even before it reaches the worker. Structural damage could occur to both the worker and the debris itself, depending on their relative speeds and angles of impact. The situation demands immediate attention to prevent severe harm or fatality."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a blue shirt is struck by a piece of falling debris during construction work, resulting in potential injury due to the sudden impact and loss of balance caused by the debris’s trajectory and speed.",
+              "reasoning": "The striking debris possesses significant kinetic energy due to its velocity and mass, which transfers abruptly upon contact with the worker’s head. The worker’s position and posture make them vulnerable to being struck, especially if they are moving or distracted. Inertia causes the worker to react quickly, potentially leading to a loss of balance and further injury. The debris’s trajectory is unpredictable, increasing the risk of collision even before it reaches the worker. Structural damage could occur to both the worker and the debris itself, depending on their relative speeds and angles of impact. The situation demands immediate attention to prevent severe harm or fatality."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a blue shirt is struck by a piece of falling debris during construction work, resulting in potential injury due to the sudden impact and loss of balance caused by the debris’s trajectory and speed.",
+              "reasoning": "The striking debris possesses significant kinetic energy due to its velocity and mass, which transfers abruptly upon contact with the worker’s head. The worker’s position and posture make them vulnerable to being struck, especially if they are moving or distracted. Inertia causes the worker to react quickly, potentially leading to a loss of balance and further injury. The debris’s trajectory is unpredictable, increasing the risk of collision even before it reaches the worker. Structural damage could occur to both the worker and the debris itself, depending on their relative speeds and angles of impact. The situation demands immediate attention to prevent severe harm or fatality."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a blue shirt is struck by a piece of falling debris during construction work, resulting in potential injury due to the sudden impact and loss of balance caused by the debris’s trajectory and speed.",
+              "reasoning": "The striking debris possesses significant kinetic energy due to its velocity and mass, which transfers abruptly upon contact with the worker’s head. The worker’s position and posture make them vulnerable to being struck, especially if they are moving or distracted. Inertia causes the worker to react quickly, potentially leading to a loss of balance and further injury. The debris’s trajectory is unpredictable, increasing the risk of collision even before it reaches the worker. Structural damage could occur to both the worker and the debris itself, depending on their relative speeds and angles of impact. The situation demands immediate attention to prevent severe harm or fatality."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a blue shirt is struck by a piece of falling debris during construction work, resulting in potential injury due to the sudden impact and loss of balance caused by the debris’s trajectory and speed.",
+              "reasoning": "The striking debris possesses significant kinetic energy due to its velocity and mass, which transfers abruptly upon contact with the worker’s head. The worker’s position and posture make them vulnerable to being struck, especially if they are moving or distracted. Inertia causes the worker to react quickly, potentially leading to a loss of balance and further injury. The debris’s trajectory is unpredictable, increasing the risk of collision even before it reaches the worker. Structural damage could occur to both the worker and the debris itself, depending on their relative speeds and angles of impact. The situation demands immediate attention to prevent severe harm or fatality."
+            }
+          ],
+          "overall_safety_score": 50
+        },
+        "latency_seconds": 70.912
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3894",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3894.png",
+        "media_sha256": "02c6217595510abd3d93e80336be1ab8689c85d89e904cddda3c62d323b2e212",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3894.png",
+        "upstream_object_counts": {
+          "helmet": 2,
+          "head": 15
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a red hard hat is standing close to a machine, potentially exposed to its moving parts without protective gear, posing a risk of being struck by components during operation.",
+              "reasoning": "The individual near the machine is positioned within the machine's operational area, where moving parts could collide with their body. The proximity suggests that any sudden movement or malfunction of the machine might result in a collision, leading to injury due to the lack of protective gear such as a safety helmet. Inertia plays a role here, as the person's body would resist sudden changes in motion, but without proper protection, the impact could be severe. Structural compression is also a concern if the machine's components are heavy or rigid, further increasing the risk of harm upon contact."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow jacket is standing close to a machine, potentially exposed to its moving parts without protective gear, posing a risk of being struck by components during operation.",
+              "reasoning": "This individual is situated near the machine, which may have moving parts that could strike them unexpectedly. Without a safety helmet, they are vulnerable to potential impacts from these components. The combination of proximity and unprotected head makes them susceptible to serious injury if the machine malfunctions or components move suddenly. The physics involved include momentum transfer from the machine's motion to the person's body, causing kinetic impact. Inertia causes the person’s body to resist sudden changes in motion, but without protective measures, the resulting force can lead to significant damage."
+            }
+          ],
+          "overall_safety_score": 50
+        },
+        "latency_seconds": 30.052
+      },
+      {
+        "id": "public-ppe:hard_hat_workers862",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers862.png",
+        "media_sha256": "f93a26ac006bcf50a4c0f8668f1d666e3dce836a299ce51e66cb0f8b9cf4808e",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers862.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.057
+      },
+      {
+        "id": "public-ppe:hard_hat_workers907",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers907.png",
+        "media_sha256": "06379d3803894f915228b47285bfd24678d8b25b72157be71728cbb094af307d",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers907.png",
+        "upstream_object_counts": {
+          "helmet": 4
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 31.545
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1325",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1325.png",
+        "media_sha256": "3938d8ad95e1d842d54f5beab6dfd02b32e900dfad08fd63ed8340114bacb76d",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1325.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 8.932
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4978",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4978.png",
+        "media_sha256": "7a0364b5e9fdd9395f3c7221fdfe4294624745cc98e70664e4e2ab499c1fca46",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4978.png",
+        "upstream_object_counts": {
+          "helmet": 1
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow hard hat is struck by a piece of moving machinery located nearby, resulting in potential injury due to the sudden impact and loss of balance caused by the collision.",
+              "reasoning": "The worker’s body is positioned within the immediate vicinity of the moving machinery, which has significant momentum and velocity. The striking event causes abrupt deceleration and rotation, leading to possible injuries such as fractures or head trauma. Inertia plays a critical role here, as the worker’s body resists changes in motion, amplifying the risk during the collision. The proximity and alignment of the worker’s body with the moving machinery create a direct line of attack, making this a high-severity hazard that demands immediate attention and protective measures."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Ensure the worker wears a full-face shield and maintain a safe distance from the moving machinery to mitigate risks associated with sudden impacts."
+        },
+        "latency_seconds": 22.528
+      },
+      {
+        "id": "public-ppe:hard_hat_workers460",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers460.png",
+        "media_sha256": "45c48c07144c9e88aa3a3a620194d4d9d353ecc22eb41069cb4da06dab2641c2",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers460.png",
+        "upstream_object_counts": {
+          "head": 6
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.322
+      },
+      {
+        "id": "public-ppe:hard_hat_workers693",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers693.png",
+        "media_sha256": "386487c9b53aaaffacb02e1e3845693bdb1e0f7adc3a1b03eb8b6e5ccec582b8",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers693.png",
+        "upstream_object_counts": {
+          "helmet": 1,
+          "head": 10
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 50.001
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1875",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1875.png",
+        "media_sha256": "1c4e22050fdc4db51b4b065dd8959f2804abad9cab7e3137ed44bc01e6fff4c3",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1875.png",
+        "upstream_object_counts": {
+          "head": 7
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.528
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1100",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1100.png",
+        "media_sha256": "6a1e291ba421c16b437ef1e76b72b8a8be97441ef9b29d8d2f0df5733a7db796",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1100.png",
+        "upstream_object_counts": {
+          "helmet": 9
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow hard hat is struck by a piece of falling debris during operation, resulting in potential injury due to sudden deceleration and impact forces.",
+              "reasoning": "The striking event involves a collision where the worker’s body experiences abrupt deceleration upon contact with the falling debris. The debris possesses significant kinetic energy due to its velocity and mass, which transfers abruptly to the worker, causing structural deformation and potential injury. The proximity of the worker to the debris’s trajectory creates a critical risk zone where even minor misalignment could result in severe harm. Inertia plays a key role here, as the worker’s body resists changes in motion until acted upon by the external force of the debris, leading to a high likelihood of injury during such a strike."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a blue hard hat is struck by a piece of falling debris during operation, resulting in potential injury due to sudden deceleration and impact forces.",
+              "reasoning": "The striking event involves a collision where the worker’s body experiences abrupt deceleration upon contact with the falling debris. The debris possesses significant kinetic energy due to its velocity and mass, which transfers abruptly to the worker, causing structural deformation and potential injury. The proximity of the worker to the debris’s trajectory creates a critical risk zone where even minor misalignment could result in severe harm. Inertia plays a key role here, as the worker’s body resists changes in motion until acted upon by the external force of the debris, leading to a high likelihood of injury during such a strike."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a blue hard hat is struck by a piece of falling debris during operation, resulting in potential injury due to sudden deceleration and impact forces.",
+              "reasoning": "The striking event involves a collision where the worker’s body experiences abrupt deceleration upon contact with the falling debris. The debris possesses significant kinetic energy due to its velocity and mass, which transfers abruptly to the worker, causing structural deformation and potential injury. The proximity of the worker to the debris’s trajectory creates a critical risk zone where even minor misalignment could result in severe harm. Inertia plays a key role here, as the worker’s body resists changes in motion until acted upon by the external force of the debris, leading to a high likelihood of injury during such a strike."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a blue hard hat is struck by a piece of falling debris during operation, resulting in potential injury due to sudden deceleration and impact forces.",
+              "reasoning": "The striking event involves a collision where the worker’s body experiences abrupt deceleration upon contact with the falling debris. The debris possesses significant kinetic energy due to its velocity and mass, which transfers abruptly to the worker, causing structural deformation and potential injury. The proximity of the worker to the debris’s trajectory creates a critical risk zone where even minor misalignment could result in severe harm. Inertia plays a key role here, as the worker’s body resists changes in motion until acted upon by the external force of the debris, leading to a high likelihood of injury during such a strike."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a blue hard hat is struck by a piece of falling debris during operation, resulting in potential injury due to sudden deceleration and impact forces.",
+              "reasoning": "The striking event involves a collision where the worker’s body experiences abrupt deceleration upon contact with the falling debris. The debris possesses significant kinetic energy due to its velocity and mass, which transfers abruptly to the worker, causing structural deformation and potential injury. The proximity of the worker to the debris’s trajectory creates a critical risk zone where even minor misalignment could result in severe harm. Inertia plays a key role here, as the worker’s body resists changes in motion until acted upon by the external force of the debris, leading to a high likelihood of injury during such a strike."
+            }
+          ],
+          "overall_safety_score": 50
+        },
+        "latency_seconds": 71.028
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1443",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1443.png",
+        "media_sha256": "eef31d2426a256f84209cb4a4bee9b50409c57ecca61a76248a589f07cfbef24",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1443.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.488
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2884",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2884.png",
+        "media_sha256": "dd67983fe923b8d743aac9d4c42f7ebc4c7cfac2a2d802a43ec393513649fd40",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2884.png",
+        "upstream_object_counts": {
+          "helmet": 4
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.454
+      },
+      {
+        "id": "public-ppe:hard_hat_workers607",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers607.png",
+        "media_sha256": "0316d8f2da3ea744775adb3acf6deaf3bd5937cafe29b70f7e570797104c089d",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers607.png",
+        "upstream_object_counts": {
+          "helmet": 4,
+          "head": 2
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white hard hat is being struck by a piece of machinery, resulting in potential injury due to the sudden impact and loss of balance caused by the collision.",
+              "reasoning": "The worker’s body is directly impacted by the moving part of the machinery, transferring significant kinetic energy. The collision disrupts their posture and balance, leading to a risk of severe injury such as fractures or head trauma. The proximity of the worker to the machinery’s operational zone increases the likelihood of this accident occurring under these conditions. Inertia plays a critical role here, as the worker’s body resists the sudden change in momentum, causing the impact that results in the strike."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person without a safety helmet is standing close to the machinery, posing a serious risk of head injury if struck by any moving component of the machine during operation. The lack of protective gear makes them vulnerable to fatal injuries from even minor impacts. The worker’s position near the machinery’s active area creates a dangerous scenario where accidental contact could occur unexpectedly."
+            }
+          ],
+          "overall_safety_score": 50
+        },
+        "latency_seconds": 26.759
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3268",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3268.png",
+        "media_sha256": "102e2fcdd5fa436fe1cc31e22332df332e5c68bdfad5a4b07e56fb668f0c33b4",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3268.png",
+        "upstream_object_counts": {
+          "head": 12
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white shirt is struck by a red helmet held by another individual, resulting in potential injury due to the sudden collision and loss of balance."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white shirt is struck by a red helmet held by another individual, resulting in potential injury due to the sudden collision and loss of balance."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white shirt is struck by a red helmet held by another individual, resulting in potential injury due to the sudden collision and loss of balance."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white shirt is struck by a red helmet held by another individual, resulting in potential injury due to the sudden collision and loss of balance."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white shirt is struck by a red helmet held by another individual, resulting in potential injury due to the sudden collision and loss of balance."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Ensure that all individuals involved in handling helmets are properly trained and equipped with appropriate protective gear before any activity involving helmet manipulation begins."
+        },
+        "latency_seconds": 30.178
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3750",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3750.png",
+        "media_sha256": "e11c41672b285401c60dcefa1e232ef01733f5d8f561e73c82478c7b9a4b584e",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3750.png",
+        "upstream_object_counts": {
+          "helmet": 7
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow helmet is struck by a piece of heavy machinery, resulting in severe injury due to the sudden impact and loss of balance caused by the collision.",
+              "reasoning": "The striking action involves a direct hit where the worker’s body is compressed against the moving parts of the machinery, leading to significant trauma. The worker's torso and limbs are positioned within the machine's operational zone, making them vulnerable to kinetic forces during operation. Inertia causes the worker to be violently thrown backward upon contact, while momentum transfer results in structural damage to both the worker and the machinery. The combination of these factors creates a critical safety violation that demands immediate intervention to prevent further harm or death."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white helmet is struck by a piece of heavy machinery, resulting in severe injury due to the sudden impact and loss of balance caused by the collision.",
+              "reasoning": "The striking action involves a direct hit where the worker’s body is compressed against the moving parts of the machinery, leading to significant trauma. The worker's torso and limbs are positioned within the machine's operational zone, making them vulnerable to kinetic forces during operation. Inertia causes the worker to be violently thrown backward upon contact, while momentum transfer results in structural damage to both the worker and the machinery. The combination of these factors creates a critical safety violation that demands immediate intervention to prevent further harm or death."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow helmet is struck by a piece of heavy machinery, resulting in severe injury due to the sudden impact and loss of balance caused by the collision.",
+              "reasoning": "The striking action involves a direct hit where the worker’s body is compressed against the moving parts of the machinery, leading to significant trauma. The worker's torso and limbs are positioned within the machine's operational zone, making them vulnerable to kinetic forces during operation. Inertia causes the worker to be violently thrown backward upon contact, while momentum transfer results in structural damage to both the worker and the machinery. The combination of these factors creates a critical safety violation that demands immediate intervention to prevent further harm or death."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Ensure all workers wear appropriate personal protective equipment (PPE), including hard hats, and maintain safe distances from operating machinery to mitigate risks of unexpected collisions."
+        },
+        "latency_seconds": 43.955
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4958",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4958.png",
+        "media_sha256": "29dfdb3ac8a3f3426f5818ee7e4fb1d37d30bd9ca135be1ab915381e80f34d00",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4958.png",
+        "upstream_object_counts": {
+          "helmet": 3
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow hard hat is struck by a piece of falling debris or tool held above their head, resulting in potential head injury due to sudden deceleration and impact forces.",
+              "reasoning": "The individual’s head is exposed without any protective gear, making them vulnerable to severe injury if struck by falling debris or tools. The upward trajectory of the object creates a momentary clearance issue, but the lack of a helmet means there is no physical barrier against the impact, leading to a critical collision risk based on principles of momentum transfer and inertia during sudden stops or collisions.",
+              "dynamic_prediction": "The striking event will cause significant deceleration and potential skull fracture due to the abrupt change in velocity and the absence of protective coverage."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Ensure all workers wear appropriate personal protective equipment, including helmets, before operating any machinery that involves moving parts or potential falling objects."
+        },
+        "latency_seconds": 21.972
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2502",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2502.png",
+        "media_sha256": "981903a874a601238355e98e6f079fff62640b8ee6693cf22f3db7cf2adb4fbe",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2502.png",
+        "upstream_object_counts": {
+          "helmet": 1
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.031
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1054",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1054.png",
+        "media_sha256": "c8169352d9275267aec54370a357b6045d7e17de8b7c78ce8434054e6a1488aa",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1054.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.258
+      },
+      {
+        "id": "public-ppe:hard_hat_workers909",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers909.png",
+        "media_sha256": "07ffa8652e2a58f02ddeaa1fa06c426ef10cf324603522c122adcc743a93c3d2",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers909.png",
+        "upstream_object_counts": {
+          "helmet": 14
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.142
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2724",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2724.png",
+        "media_sha256": "18448271b0815746693fa8e4942c6589c1ae7b3072d73b03da26e0f3d7317afc",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2724.png",
+        "upstream_object_counts": {
+          "head": 6
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.135
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3533",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3533.png",
+        "media_sha256": "4b999f2c8836af35d04963f04c54f20acfcba169b20773edf3d4c357d331e0e3",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3533.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.323
+      },
+      {
+        "id": "public-ppe:hard_hat_workers347",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers347.png",
+        "media_sha256": "f03322cf9b335c9217d9b08752bd7bb18a94120a3303308784d5a1f00994071f",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers347.png",
+        "upstream_object_counts": {
+          "helmet": 1
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.469
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1210",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1210.png",
+        "media_sha256": "b472c7ce8ed50871b15b853dd4e4c77736593ee7b26d67a80e5c8aa81197a430",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1210.png",
+        "upstream_object_counts": {
+          "helmet": 1,
+          "head": 1
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 50.344
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3626",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3626.png",
+        "media_sha256": "7ce54da680bbdb761645f8f140a49ecc15ed88ecf1f333c3b2fb7734ee10bae5",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3626.png",
+        "upstream_object_counts": {
+          "head": 9
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.423
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2571",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2571.png",
+        "media_sha256": "5d1de2eeb0eb201d4c803e79fbb4ff0977807805f87c51d445ec90b53087d5c4",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2571.png",
+        "upstream_object_counts": {
+          "helmet": 8,
+          "head": 1
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a red hard hat is being struck by another individual who is leaning over them, potentially causing injury due to sudden force transfer during the collision.",
+              "reasoning": "The striking individual has their upper body positioned directly above the person in the red hard hat, transferring significant momentum downward. The hard hat may be displaced or damaged upon impact, increasing the risk of head injury. Inertia causes the striking person’s body to accelerate rapidly toward the target, leading to a high-energy collision that could result in severe harm if the struck person cannot react quickly enough. The proximity of the two individuals creates a critical zone where even minor misalignment can lead to catastrophic outcomes due to the combined effects of velocity and mass transfer during the strike."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white shirt is being struck by another individual who is leaning over them, potentially causing injury due to sudden force transfer during the collision.",
+              "reasoning": "The striking individual has their upper body positioned directly above the person in the white shirt, transferring significant momentum downward. The white-shirted person may experience a sudden deceleration or structural damage upon impact, especially if they are caught off guard. Inertia causes the striking person’s body to accelerate rapidly toward the target, leading to a high-energy collision that could result in severe harm if the struck person cannot react quickly enough. The proximity of the two individuals creates a critical zone where even minor misalignment can lead to catastrophic outcomes due to the combined effects of velocity and mass transfer during the strike."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a brown jacket is being struck by another individual who is leaning over them, potentially causing injury due to sudden force transfer during the collision.",
+              "reasoning": "The striking individual has their upper body positioned directly above the person in the brown jacket, transferring significant momentum downward. The brown-jacketed person may experience a sudden deceleration or structural damage upon impact, especially if they are caught off guard. Inertia causes the striking person’s body to accelerate rapidly toward the target, leading to a high-energy collision that could result in severe harm if the struck person cannot react quickly enough. The proximity of the two individuals creates a critical zone where even minor misalignment can lead to catastrophic outcomes due to the combined effects of velocity and mass transfer during the strike."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Ensure proper helmet usage and implement protective gear to mitigate risks associated with unexpected collisions."
+        },
+        "latency_seconds": 45.919
+      },
+      {
+        "id": "public-ppe:hard_hat_workers747",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers747.png",
+        "media_sha256": "4c0b6f3ead3cbe745865411704d0131c38ddd40e2085a714c8409ba299ac86dc",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers747.png",
+        "upstream_object_counts": {
+          "helmet": 8
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a hard hat is struck by a rotating metal rod, resulting in severe injury due to the sudden deceleration and momentum transfer during the collision.",
+              "reasoning": "The worker is directly hit by a rotating metal rod moving at high speed, causing significant deceleration and potential structural damage to their body. The rod's rotation creates centripetal force that transfers kinetic energy to the worker, leading to a critical impact hazard. Inertia plays a key role here, as the worker's body resists the change in motion, resulting in a violent stop upon contact. The proximity of the worker to the rotating rod increases the risk of fatal injury due to the concentrated force applied over a short distance. The failure to wear additional protective gear exacerbates the severity of the incident, as there is no cushioning layer to mitigate the impact."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person without a safety helmet is struck by a rotating metal rod, leading to serious injury due to the abrupt deceleration and momentum transfer during the collision."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Ensure all workers wear safety helmets before operating any machinery involving rotating components. Install protective barriers around rotating parts to prevent accidental contact. Conduct regular safety training to reinforce proper helmet usage and awareness of potential hazards."
+        },
+        "latency_seconds": 28.399
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4782",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4782.png",
+        "media_sha256": "8ea0111fe3ca9874f7132475db57225b43e77743d8cbf2f4f21d33526d71b5a6",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4782.png",
+        "upstream_object_counts": {
+          "helmet": 3
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a blue shirt is struck by a vertical metal rod, resulting in potential injury due to the sudden collision and loss of balance caused by the rod’s trajectory and speed.",
+              "reasoning": "The striking action involves the transfer of momentum from the moving metal rod to the worker, leading to a high-risk impact. The proximity of the worker to the rod creates a direct line of attack, violating safe interaction principles. Inertia plays a role here, as the worker’s body resists the sudden change in motion, causing them to be thrown backward or sideways upon contact. Structural damage could occur if the impact is severe enough, especially given the rigidity of both the rod and the worker’s torso and limbs. The failure to wear protective gear exacerbates the risk of injury from this type of collision, which can lead to fractures, concussions, or more serious trauma depending on the angle and force of the strike.",
+              "dynamic_prediction": "The worker will experience a violent deceleration upon being struck, potentially leading to a fall or loss of control, which may result in additional injuries or fatalities."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow hard hat is struck by a vertical metal rod, resulting in potential injury due to the sudden collision and loss of balance caused by the rod’s trajectory and speed.",
+              "reasoning": "Similar to the previous incident, the striking action involves the transfer of momentum from the moving metal rod to the worker, leading to a high-risk impact. The proximity of the worker to the rod creates a direct line of attack, violating safe interaction principles. Inertia plays a role here, as the worker’s body resists the sudden change in motion, causing them to be thrown backward or sideways upon contact. Structural damage could occur if the impact is severe enough, especially given the rigidity of both the rod and the worker’s torso and limbs. The failure to wear protective gear exacerbates the risk of injury from this type of collision, which can lead to fractures, concussions, or more serious trauma depending on the angle and force of the strike.",
+              "dynamic_prediction": "The worker will experience a violent deceleration upon being struck, potentially leading to a fall or loss of control, which may result in additional injuries or fatalities."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a red hard hat is struck by a vertical metal rod, resulting in potential injury due to the sudden collision and loss of balance caused by the rod’s trajectory and speed.",
+              "reasoning": "The striking action involves the transfer of momentum from the moving metal rod to the worker, leading to a high-risk impact. The proximity of the worker to the rod creates a direct line of attack, violating safe interaction principles. Inertia plays a role here, as the worker’s body resists the sudden change in motion, causing them to be thrown backward or sideways upon contact. Structural damage could occur if the impact is severe enough, especially given the rigidity of both the rod and the worker’s torso and limbs. The failure to wear protective gear exacerbates the risk of injury from this type of collision, which can lead to fractures, concussions, or more serious trauma depending on the angle and force of the strike.",
+              "dynamic_prediction": "The worker will experience a violent deceleration upon being struck, potentially leading to a fall or loss of control, which may result in additional injuries or fatalities."
+            }
+          ],
+          "overall_safety_score": 50
+        },
+        "latency_seconds": 61.654
+      },
+      {
+        "id": "public-ppe:hard_hat_workers536",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers536.png",
+        "media_sha256": "9dad3954ac6fa407d8bb677620376804a078c3f13bb8cb6f55dbd805b67a2de5",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers536.png",
+        "upstream_object_counts": {
+          "head": 6
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.687
+      },
+      {
+        "id": "public-ppe:hard_hat_workers35",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers35.png",
+        "media_sha256": "35374835fb7d7a0cd8c434a898e695c00fe3bcb9acd3b6a348e6c3abbaef8804",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers35.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "The worker wearing a gray t-shirt is struck by a moving part of the machine, resulting in severe injury due to high-speed collision and loss of balance",
+              "reasoning": "The worker’s body is positioned directly within the machine’s operational zone, where rapid movement could cause fatal injuries. The machine component strikes him with significant momentum, transferring force that overcomes his resistance, leading to structural damage and potential fatality. Inertia causes his body to decelerate abruptly upon impact, while the machine’s mass and speed amplify the kinetic energy transferred during the strike",
+              "dynamic_prediction": "Severe trauma including broken bones, internal organ damage, or death depending on the exact point of contact and angle of impact."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "The worker wearing a striped shirt is struck by a moving part of the machine, resulting in severe injury due to high-speed collision and loss of balance",
+              "reasoning": "The worker’s body is positioned directly within the machine’s operational zone, where rapid movement could cause fatal injuries. The machine component strikes him with significant momentum, transferring force that overcomes his resistance, leading to structural damage and potential fatality. Inertia causes his body to decelerate abruptly upon impact, while the machine’s mass and speed amplify the kinetic energy transferred during the strike",
+              "dynamic_prediction": "Severe trauma including broken bones, internal organ damage, or death depending on the exact point of contact and angle of impact."
+            }
+          ],
+          "overall_safety_score": 50
+        },
+        "latency_seconds": 33.429
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1144",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1144.png",
+        "media_sha256": "3526b800a0ae08ac43723ce8959158e0415f1e606efb9d60d82ff1cdf6c9cadf",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1144.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "The worker wearing a yellow hard hat is struck by a rotating metal rod, resulting in potential injury due to the sudden deceleration and impact forces involved.",
+              "reasoning": "The worker’s body is positioned directly within the rotational kinetic path of the metal rod, which is moving at high speed. The moment of impact would transfer significant momentum, leading to severe mechanical strain or fatal injury. Inertia causes the worker’s body to resist sudden changes in motion, but once contact occurs, the rod’s rapid deceleration creates a crushing force against the torso, potentially causing fractures or internal injuries. The proximity of the worker’s upper body to the rotating mechanism makes this a critical collision hazard that cannot be mitigated without stopping the rotation or relocating the worker safely away from the risk zone."
+            }
+          ]
+        },
+        "latency_seconds": 22.001
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4386",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4386.png",
+        "media_sha256": "a3bf27149a088c32f0e0999d6eef2a0913a0ba83246ee070cbca670836866314",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4386.png",
+        "upstream_object_counts": {
+          "helmet": 3,
+          "head": 11
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a hard hat is struck by a moving vehicle, resulting in severe injury due to the sudden deceleration and collision forces involved.",
+              "reasoning": "The struck individual was positioned directly within the path of the approaching bus, experiencing a high-impact collision that caused significant structural damage and potential fatal injuries. The bus's forward momentum transferred kinetic energy to the person, leading to a catastrophic outcome despite the presence of protective gear such as a hard hat. Inertia played a critical role, as the body's resistance to changes in motion resulted in violent deceleration upon contact with the stationary vehicle. The proximity of the person to the moving bus created a direct line of attack, making this a high-severity accident scenario where even partial protection could have mitigated the risk significantly."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person without a safety helmet is struck by a moving vehicle, resulting in severe injury due to the sudden deceleration and collision forces involved.",
+              "reasoning": "This individual was standing close to the moving bus, exposed to its full frontal impact. Without a safety helmet, they were vulnerable to head trauma from the collision, which would have been exacerbated by the lack of protective coverage. The bus's velocity and mass contributed to the kinetic energy transferred during the strike, causing the person’s head to experience extreme acceleration and deceleration. The absence of a helmet eliminated any cushioning effect, increasing the likelihood of fatal head injuries. The interaction between the moving vehicle and the stationary target creates a momentary window of vulnerability, highlighting the importance of proper helmet use in such environments."
+            }
+          ],
+          "overall_safety_score": 50
+        },
+        "latency_seconds": 32.312
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1049",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1049.png",
+        "media_sha256": "8e22d16c8d842ad09d27d7680b85c9d05d6f3ca23d564426e100a12a517edaa5",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1049.png",
+        "upstream_object_counts": {
+          "helmet": 4,
+          "head": 6
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.587
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3546",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3546.png",
+        "media_sha256": "fce0d77e326cffa3cbbae61e89260a4cf0fbab6afa10dc602f680f9cfc27e39e",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3546.png",
+        "upstream_object_counts": {
+          "helmet": 4,
+          "head": 2
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 10.127
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3777",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3777.png",
+        "media_sha256": "113c18479db9f7e168a23bc7ea3e60473d5f0e2c384b057e5889444a2842922e",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3777.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.997
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2886",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2886.png",
+        "media_sha256": "4a8408d3436dc32b03590f460698aa3b1e32629eb9661ea8e3c8bad314991173",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2886.png",
+        "upstream_object_counts": {
+          "helmet": 8,
+          "head": 1
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 105.987
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3996",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3996.png",
+        "media_sha256": "da9cc83af8642e82c5c5c4a1e3ce0348d745c40ce6eca1e09059af7fe3ec0070",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3996.png",
+        "upstream_object_counts": {
+          "head": 13
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.205
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3162",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3162.png",
+        "media_sha256": "288db1b9acce20073db6a9fd07177ef7b8c02a7c48166726b2adaaf855bc2e63",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3162.png",
+        "upstream_object_counts": {
+          "head": 11
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.303
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2040",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2040.png",
+        "media_sha256": "8595bce8eb3506ba3bf53f6ef9e39b05a13ba63e5a179aed70e0df928bbc7e9c",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2040.png",
+        "upstream_object_counts": {
+          "helmet": 9
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 31.064
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2490",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2490.png",
+        "media_sha256": "1682713514c2e413c8010a321e8d89f6656ed367510e3c7d81d08d54defa855b",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2490.png",
+        "upstream_object_counts": {
+          "head": 8
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.364
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2617",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2617.png",
+        "media_sha256": "0e5c68617ab14ed5b8e60c8e22dbe5d6dc2c00f0eebf2117dd837417e0b8baae",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2617.png",
+        "upstream_object_counts": {
+          "helmet": 4
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.836
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1004",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1004.png",
+        "media_sha256": "aad8ab690f7ad2e443ff435fb09751f09e8c25e3465ff416b3d3a5dd1077b2a2",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1004.png",
+        "upstream_object_counts": {
+          "helmet": 5
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow hard hat is struck by a piece of equipment, resulting in severe injury due to the sudden impact and loss of balance caused by the collision.",
+              "reasoning": "The striking event involves a direct collision where the worker's body is caught between the moving machine component and their own momentum. The impact generates significant kinetic energy, causing structural deformation and potential fatal injuries. Inertia plays a critical role here, as the worker’s body resists the sudden change in motion, leading to a violent deceleration and possible ejection from the workspace. The proximity of the worker to the machine's operational zone amplifies the risk of such a catastrophic outcome."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow hard hat is struck by a piece of equipment, resulting in severe injury due to the sudden impact and loss of balance caused by the collision.",
+              "reasoning": "This scenario describes another instance of a worker being struck by a machine component. The impact causes immediate trauma, likely involving fractures or internal organ damage, given the severity indicated. The worker's body is subjected to rapid deceleration against the rigid surface of the machine, transferring substantial kinetic energy. The lack of protective gear exacerbates the injury potential, as there is no cushioning or absorption to mitigate the forces involved. Structural failure can occur if the impact exceeds the material strength limits of both the worker's body and the machine part."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow hard hat is struck by a piece of equipment, resulting in severe injury due to the sudden impact and loss of balance caused by the collision.",
+              "reasoning": "In this situation, the worker experiences a high-impact strike that leads to serious harm. The collision disrupts the natural flow of movement, causing the worker to lose control and collide forcefully with the machine. The abrupt stoppage results in massive kinetic energy transfer, which overcomes the worker's ability to react quickly enough to avoid injury. The combination of speed, mass, and angle of approach contributes to the extreme force applied during the incident."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Ensure all workers wear appropriate personal protective equipment, including hard hats, and implement strict protocols to prevent collisions with moving machinery."
+        },
+        "latency_seconds": 48.773
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4373",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4373.png",
+        "media_sha256": "e0b5fe4588dd8ccc2086db83f7928fc35b124f94ddadbf107911e641ffb2f761",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4373.png",
+        "upstream_object_counts": {
+          "helmet": 6
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 37.764
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4741",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4741.png",
+        "media_sha256": "ae4d28d2606cee316b7677c2711f40b250a6e435ffa20667836dbf4e20f9e84d",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4741.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.703
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3263",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3263.png",
+        "media_sha256": "c9c0662653cf4064890e14402434d79728d068f6a05cfdba7d732dfdafbecd9e",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3263.png",
+        "upstream_object_counts": {
+          "helmet": 1
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "The worker is struck by a pole-mounted machine component, resulting in severe injury due to the sudden deceleration and impact forces involved.",
+              "reasoning": "The worker’s upper body is directly exposed to a rapidly moving mechanical part, such as a rotating blade or swinging arm, which transfers significant momentum upon contact. The combination of high-speed motion and direct collision leads to extreme kinetic impact, causing potential fatal injuries. Inertia plays a critical role here, as the worker’s body resists sudden changes in velocity, leading to catastrophic structural failure during the strike. The lack of protective gear exacerbates the risk, as there is no cushioning or absorption to mitigate the force of the impact."
+            }
+          ]
+        },
+        "latency_seconds": 19.624
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1900",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1900.png",
+        "media_sha256": "ad72226e203b11ec342e1b8366d1f8e0fb8e1a7fd66df9cbd137dab4aff5856f",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1900.png",
+        "upstream_object_counts": {
+          "helmet": 4
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow jacket is struck by a rotating component of the machine, resulting in severe injury due to the sudden deceleration and momentum transfer during contact.",
+              "reasoning": "The worker’s body is positioned directly within the machine’s rotational kinetic path, leading to a high-speed collision. The abrupt stoppage causes massive deceleration forces that compress the torso against the machine’s surface, exceeding safe limits for human tissue integrity. Inertia plays a critical role here, as the worker’s body resists the change in motion instantly upon impact, resulting in structural damage and potential fatal injuries. The proximity of the worker to the rotating mechanism creates a direct line of attack, making this a critical safety violation."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a beige jacket is struck by a rotating component of the machine, resulting in severe injury due to the sudden deceleration and momentum transfer during contact.",
+              "reasoning": "This worker’s upper body is aligned along the machine’s rotational axis, placing them directly under threat. The rapid deceleration caused by the machine’s rotation generates significant centripetal force, which transfers through the worker’s body. Their torso experiences extreme acceleration-deceleration cycles, leading to internal organ trauma and possible fractures. The machine’s moving parts act as a primary cause of the deceleration, violating safety protocols by exposing the worker to uncontrolled momentum transfer. Structural failure can occur if the impact exceeds the strength of the worker’s bones or tissues."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a red helmet is struck by a rotating component of the machine, resulting in severe injury due to the sudden deceleration and momentum transfer during contact.",
+              "reasoning": "The worker’s head is exposed without any protective gear, making them vulnerable to being struck by the machine’s rotating components. The deceleration force applied to their head leads to traumatic brain injury or skull fracture. Since there is no helmet, the lack of protection violates safety regulations, increasing the risk of catastrophic harm. The machine’s rotational motion creates a continuous threat, especially near the point of impact where the worker’s head is exposed."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Install full-body protective suits with integrated helmets and face shields to eliminate exposure to rotating machinery components."
+        },
+        "latency_seconds": 44.335
+      },
+      {
+        "id": "public-ppe:hard_hat_workers676",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers676.png",
+        "media_sha256": "1d2487c82daafc080a30a9a149ef7460ce176050d19075b9a70663043cd90420",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers676.png",
+        "upstream_object_counts": {
+          "helmet": 2,
+          "head": 6
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 41.374
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4424",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4424.png",
+        "media_sha256": "650c45902af8d9408d1dd58f414a72b55143c3debe866c82eb13027856a6c11f",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4424.png",
+        "upstream_object_counts": {
+          "helmet": 15,
+          "head": 4
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 97.429
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2615",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2615.png",
+        "media_sha256": "f27bd895dbd36f27abd871e139af88ab8644ec87c64458e97ed9e93500d1cec1",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2615.png",
+        "upstream_object_counts": {
+          "helmet": 4
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.16
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4866",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4866.png",
+        "media_sha256": "53ed47df7718d3e2aa1af3cec038b6a406a891105432e91a0b8396c0b67df774",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4866.png",
+        "upstream_object_counts": {
+          "helmet": 2,
+          "head": 16
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white shirt and red hard hat is standing close to a machine, potentially exposed to its moving parts without protective gear, posing a risk of being struck by components during operation.",
+              "reasoning": "The individual is positioned near a machine that may have moving parts, with no visible safety barriers or protective gear. The proximity increases the likelihood of collision due to inertia and momentum transfer during any sudden movement or malfunction of the machine. Structural compression could occur if the machine component strikes the person, leading to severe injury or fatality depending on speed and angle of impact. In this scenario, the lack of a safety helmet exacerbates the risk, as it fails to protect against potential impacts from airborne debris or mechanical parts."
+            }
+          ]
+        },
+        "latency_seconds": 18.987
+      },
+      {
+        "id": "public-ppe:hard_hat_workers497",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers497.png",
+        "media_sha256": "f189045f595a842d0a5bc31cd10371d9bd3cdb840281df17562dfe63b276eeeb",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers497.png",
+        "upstream_object_counts": {
+          "head": 1
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.341
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4283",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4283.png",
+        "media_sha256": "5bf8578b3171fe07b12fb5ac4835208fda393bfb9a9060ca220f3bf4838d7d73",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4283.png",
+        "upstream_object_counts": {
+          "helmet": 8
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white helmet is struck by a moving blue machine component, resulting in severe injury due to high-speed collision and momentum transfer.",
+              "reasoning": "The worker’s body is directly in the path of a fast-moving blue machine part, which has significant kinetic energy. The impact causes structural deformation and potential fatal injuries due to the sudden deceleration and force applied during the strike. Inertia plays a critical role here, as the worker’s body resists the change in motion, leading to a violent reaction against the stationary surface they collide with. The proximity of the worker to the moving component creates a high-risk scenario where even minor misalignment could result in catastrophic failure of the body’s integrity."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white helmet is struck by a moving blue machine component, resulting in severe injury due to high-speed collision and momentum transfer.",
+              "reasoning": "The worker’s body is directly in the path of a fast-moving blue machine part, which has significant kinetic energy. The impact causes structural deformation and potential fatal injuries due to the sudden deceleration and force applied during the strike. Inertia plays a critical role here, as the worker’s body resists the change in motion, leading to a violent reaction against the stationary surface they collide with. The proximity of the worker to the moving component creates a high-risk scenario where even minor misalignment could result in catastrophic failure of the body’s integrity."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white helmet is struck by a moving blue machine component, resulting in severe injury due to high-speed collision and momentum transfer.",
+              "reasoning": "The worker’s body is directly in the path of a fast-moving blue machine part, which has significant kinetic energy. The impact causes structural deformation and potential fatal injuries due to the sudden deceleration and force applied during the strike. Inertia plays a critical role here, as the worker’s body resists the change in motion, leading to a violent reaction against the stationary surface they collide with. The proximity of the worker to the moving component creates a high-risk scenario where even minor misalignment could result in catastrophic failure of the body’s integrity."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Install protective barriers around the moving machine components to prevent accidental collisions. Conduct regular training sessions to ensure workers understand the risks associated with operating such machinery safely."
+        },
+        "latency_seconds": 42.81
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4661",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4661.png",
+        "media_sha256": "259f451a56e786fa6d73c1f93f28d5c3153a9c8a44f1fdb38d2088190fd88c2d",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4661.png",
+        "upstream_object_counts": {
+          "helmet": 3,
+          "head": 2
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a red hard hat is struck by a piece of falling debris during a construction activity, resulting in potential injury due to the sudden deceleration and impact forces involved.",
+              "reasoning": "The individual’s body is directly impacted by a falling object, transferring significant kinetic energy through their torso and upper limbs. The collision causes abrupt deceleration, leading to possible fractures or internal injuries. The proximity of the debris to the worker’s position creates a critical risk of severe harm due to the concentrated force applied during the strike. Inertia plays a key role here, as the worker’s body resists the sudden change in motion, amplifying the impact severity upon contact with the debris. Structural damage could also occur if the impact affects vital organs or joints, especially given the high velocity of the falling object and the limited reaction time available to mitigate the injury."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white hard hat is struck by a piece of falling debris during a construction activity, resulting in potential injury due to the sudden deceleration and impact forces involved.",
+              "reasoning": "The individual’s body is directly impacted by a falling object, transferring significant kinetic energy through their torso and upper limbs. The collision causes abrupt deceleration, leading to possible fractures or internal injuries. The proximity of the debris to the worker’s position creates a critical risk of severe harm due to the concentrated force applied during the strike. Inertia plays a key role here, as the worker’s body resists the sudden change in motion, amplifying the impact severity upon contact with the debris. Structural damage could also occur if the impact affects vital organs or joints, especially given the high velocity of the falling object and the limited reaction time available to mitigate the injury."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white hard hat is struck by a piece of falling debris during a construction activity, resulting in potential injury due to the sudden deceleration and impact forces involved.",
+              "reasoning": "The individual’s body is directly impacted by a falling object, transferring significant kinetic energy through their torso and upper limbs. The collision causes abrupt deceleration, leading to possible fractures or internal injuries. The proximity of the debris to the worker’s position creates a critical risk of severe harm due to the concentrated force applied during the strike. Inertia plays a key role here, as the worker’s body resists the sudden change in motion, amplifying the impact severity upon contact with the debris. Structural damage could also occur if the impact affects vital organs or joints, especially given the high velocity of the falling object and the limited reaction time available to mitigate the injury."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Ensure all individuals are properly equipped with safety helmets before any operation begins. Install protective barriers around areas where falling debris may occur. Conduct regular safety drills to reinforce proper helmet usage and emergency response procedures."
+        },
+        "latency_seconds": 49.908
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2419",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2419.png",
+        "media_sha256": "a26ff48beba5900064d7fc2ed6e51c35f3924ae61d694d97b2b07b4db4d7ad5a",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2419.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person is struck by a molten metal piece during welding operations, resulting in severe injury due to the intense heat and force involved.",
+              "reasoning": "The molten metal piece has significant kinetic energy due to its high temperature and velocity. The worker’s body is directly within the path of the moving metal, leading to a collision that causes structural damage and potential fatal injuries. Inertia plays a critical role here, as the sudden deceleration of the worker’s body results in massive momentum transfer, causing severe trauma. The lack of protective gear exacerbates the risk, as the heat and force would otherwise be mitigated by a helmet or face shield, but these are absent in this scenario."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "Another individual is struck by a molten metal piece while operating the welding torch, leading to serious harm from the extreme thermal and mechanical forces involved in the incident.",
+              "reasoning": "The molten metal piece possesses substantial kinetic energy due to its high temperature and speed. The worker’s body is positioned in close proximity to the moving metal, resulting in a direct strike that generates intense heat and pressure waves. Inertia causes the worker’s body to resist sudden changes in motion, leading to a violent deceleration and potential fatal injuries. Without proper protection such as a helmet, the impact would be catastrophic, as both the heat and mechanical force would penetrate unprotected skin and tissues."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Install protective helmets for all workers near molten metal sources to mitigate risks of struck-by incidents."
+        },
+        "latency_seconds": 32.21
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3923",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3923.png",
+        "media_sha256": "ccc5e7baa6eaad96a76fa016f8be8174ed1a237cde15f8258dcdd80f2fed35f4",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3923.png",
+        "upstream_object_counts": {
+          "head": 6
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.522
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2094",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2094.png",
+        "media_sha256": "dcd2807b9ac4ada6a9bc35b86be4a3426684f18ab2bd3f58f72018dda5e39cd9",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2094.png",
+        "upstream_object_counts": {
+          "helmet": 10,
+          "head": 1
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 10.184
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3411",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3411.png",
+        "media_sha256": "5fa23ab8f4596cd42635c62708da44f1227e4e504db89e788a4dfbeb29b9c10b",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3411.png",
+        "upstream_object_counts": {
+          "helmet": 3
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a blue uniform is struck by a piece of falling rebar, resulting in severe injury due to the high velocity and momentum transfer during the collision.",
+              "reasoning": "The fallen rebar has significant kinetic energy due to its speed and mass. Upon hitting the worker, it transfers that energy into their body, causing structural damage and potential fatal injuries. The proximity of the rebar to the worker’s position creates a direct line of attack, violating safe operation principles and leading to a critical safety violation."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a red shirt is struck by a piece of falling rebar, resulting in severe injury due to the high velocity and momentum transfer during the collision.",
+              "reasoning": "The fallen rebar has significant kinetic energy due to its speed and mass. Upon hitting the worker, it transfers that energy into their body, causing structural damage and potential fatal injuries. The proximity of the rebar to the worker’s position creates a direct line of attack, violating safe operation principles and leading to a critical safety violation."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow hard hat is struck by a piece of falling rebar, resulting in severe injury due to the high velocity and momentum transfer during the collision.",
+              "reasoning": "The fallen rebar has significant kinetic energy due to its speed and mass. Upon hitting the worker, it transfers that energy into their body, causing structural damage and potential fatal injuries. The proximity of the rebar to the worker’s position creates a direct line of attack, violating safe operation principles and leading to a critical safety violation."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Install protective barriers around the area where rebar falls to prevent accidental strikes."
+        },
+        "latency_seconds": 37.408
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4143",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4143.png",
+        "media_sha256": "c136ff79f6c120692b06396dac0cce6d22da4c4466806a40e2ae9e3b633121f1",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4143.png",
+        "upstream_object_counts": {
+          "head": 10
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.298
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1130",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1130.png",
+        "media_sha256": "d5fa12bc40b07978f4ef138b8b4f0a885439bafda52f3037a265c53c3756a81d",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1130.png",
+        "upstream_object_counts": {
+          "helmet": 1,
+          "head": 4
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 47.3
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1099",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1099.png",
+        "media_sha256": "0cb46c0ff608471de4c6a88e04fa8e098a22c1a5cfc0b5ae075b30d329aeb700",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1099.png",
+        "upstream_object_counts": {
+          "head": 4
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.089
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3335",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3335.png",
+        "media_sha256": "150aea0c86a546c184fab993f0c35fc0d0a15ed9b4cb97f7409336c5da9ae924",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3335.png",
+        "upstream_object_counts": {
+          "helmet": 5,
+          "head": 7
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow hard hat is struck by a piece of falling debris during the construction activity, resulting in potential injury due to the sudden impact and loss of balance caused by the debris’s trajectory and speed.",
+              "reasoning": "The striking event involves a collision where the falling debris transfers significant kinetic energy to the individual, causing a momentary loss of control and leading to a fall risk. The debris' momentum and the worker's proximity create a critical interaction that violates safe operation principles, especially given the lack of protective gear beyond the helmet. Inertia plays a role here, as the debris’s sudden stop upon hitting the person results in a violent deceleration, potentially causing severe injuries such as fractures or head trauma. The debris’s trajectory and the worker’s position within its path make this a high-severity hazard requiring immediate intervention to prevent further harm.",
+              "dynamic_prediction": "The individual likely experiences a sudden jolt, possibly losing footing and falling backward or sideways, depending on the exact point of contact and angle of the strike."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a red hard hat is struck by a piece of falling debris during the construction activity, resulting in potential injury due to the sudden impact and loss of balance caused by the debris’s trajectory and speed.",
+              "reasoning": "This scenario mirrors the previous instance but focuses on another worker who also faces a similar risk. The debris strikes the individual, transferring kinetic energy and causing a loss of balance. The debris’s momentum and the worker’s vulnerability make this a critical hazard. Inertia causes the debris to decelerate rapidly upon impact, leading to a violent force transfer that could result in serious injury. The close proximity of the debris to the worker’s body heightens the danger, making this a high-severity incident demanding swift action to mitigate harm."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Ensure all workers wear appropriate personal protective equipment (PPE), including hard hats, and implement strict protocols to prevent debris-related incidents. Regular training and maintenance of safety measures will help reduce risks associated with construction environments."
+        },
+        "latency_seconds": 37.836
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2507",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2507.png",
+        "media_sha256": "5ff1fd8639db607e23c799ae169fa5e3d3437cadb263d565a474c3355456d217",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2507.png",
+        "upstream_object_counts": {
+          "helmet": 4
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "The worker’s head is unprotected, exposing it directly to potential collision risks from moving parts or falling debris within the hazardous environment depicted in the image.",
+              "reasoning": "The worker's head is exposed without any protective gear, placing them directly in the line of action where sudden impacts could occur due to the dynamic nature of the surroundings. The absence of a helmet violates safety protocols, increasing vulnerability to injury from unexpected collisions or mechanical failures in the vicinity. Inertia plays a critical role here, as the worker's body would experience abrupt deceleration upon contact with any moving component, leading to severe trauma. Momentum transfer from nearby machinery or tools could also result in structural damage to both the worker and the equipment, further escalating the risk of harm. The lack of protective coverage creates a direct and immediate hazard, making this a High-severity incident requiring immediate intervention to prevent catastrophic outcomes."
+            }
+          ]
+        },
+        "latency_seconds": 21.967
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4837",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4837.png",
+        "media_sha256": "79b1a18c88952a5abe6b2591de940604fcfd416a24aa5152ddb847050fe3cef8",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4837.png",
+        "upstream_object_counts": {
+          "helmet": 1
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.431
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1915",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1915.png",
+        "media_sha256": "74dee1cf3e5804da2821e1c415e8f7d2346f66dd34f61861e42dc7d7d2b55bbd",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1915.png",
+        "upstream_object_counts": {
+          "head": 7
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.49
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2464",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2464.png",
+        "media_sha256": "23aa2815dd14f8e9cedb05d1af9a9a919f8e86e10acffe6f294400cc1759f3d6",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2464.png",
+        "upstream_object_counts": {
+          "helmet": 10
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a camouflage uniform is struck by a large pipe, resulting in severe injury due to the sudden deceleration and impact forces involved.",
+              "reasoning": "The worker in the camouflage uniform experiences a high-speed strike from the pipe, leading to significant deceleration and potential structural damage to their body. The pipe's momentum transfers abruptly to the worker, causing a violent stop, which exceeds safe stopping distances and results in critical injury risk. Inertia plays a key role here, as the worker's body resists the change in motion, amplifying the impact force upon collision. The proximity of the worker to the moving pipe creates a direct line of attack, making this a high-severity hazard that demands immediate attention and protective measures such as additional barriers or repositioning of personnel."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a blue shirt is struck by a large pipe, resulting in severe injury due to the sudden deceleration and impact forces involved.",
+              "reasoning": "The worker in the blue shirt faces a sudden deceleration event caused by the pipe striking them. The abrupt change in velocity leads to a massive impact force, exceeding safe stopping distances and risking fatal injuries. Inertia causes the worker’s body to resist the rapid deceleration, increasing the likelihood of severe trauma. The close proximity of the worker to the moving pipe creates a direct line of attack, making this a high-severity hazard that requires immediate intervention and protective gear like helmets or shields."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow hard hat is struck by a large pipe, resulting in severe injury due to the sudden deceleration and impact forces involved.",
+              "reasoning": "The worker in the yellow hard hat experiences a sudden deceleration event triggered by the pipe striking them. The abrupt change in velocity generates a powerful impact force, far beyond what the worker can safely absorb, leading to fatal injuries. Inertia causes the worker’s body to resist the rapid deceleration, exacerbating the injury severity. The close positioning of the worker near the moving pipe creates a direct line of attack, making this a high-severity hazard that necessitates immediate protective measures such as additional barriers or relocation of workers."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Install protective barriers around the pipe to prevent accidental strikes, ensure all workers wear helmets, and conduct regular safety drills to enhance reaction time and awareness."
+        },
+        "latency_seconds": 43.141
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4891",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers4891.png",
+        "media_sha256": "a45a152b4a8b3aa4b7d764015a39652006580c9e979f2641f42ae00a14575d51",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4891.png",
+        "upstream_object_counts": {
+          "helmet": 1
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "The worker is struck by the drilling rig machine, resulting in severe injury due to the collision impact and loss of balance caused by the sudden force applied to their body during the incident.",
+              "reasoning": "The worker is positioned within the immediate vicinity of the drilling rig, which has a significant height and weight. The rig's moving parts, such as the rotating drill bit, generate substantial kinetic energy upon contact. When the worker attempts to interact with the rig’s controls, the rigid structure exerts a powerful downward force, causing the worker to lose balance and be struck. Inertia plays a critical role here, as the worker’s body resists the sudden change in momentum, leading to a violent reaction against the rig’s surface. The proximity of the worker to the rig’s operational zone increases the risk of collision, especially if the rig’s components move unexpectedly or if the worker misjudges the rig’s stability. Structural compression occurs as the rig’s heavy components press down on the worker, exacerbating the impact forces and potential injuries. The combination of high-speed motion, massive mass, and close proximity creates a high-risk scenario where even minor miscalculations can lead to catastrophic outcomes."
+            }
+          ]
+        },
+        "latency_seconds": 26.567
+      },
+      {
+        "id": "public-ppe:hard_hat_workers109",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers109.png",
+        "media_sha256": "db4692510945aeb185e9136e11c9944e8fb75a2e672bfd65853f744d180170cf",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers109.png",
+        "upstream_object_counts": {
+          "helmet": 4
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing an orange uniform and white helmet is struck by a piece of metal falling from above, resulting in potential injury due to the impact force and loss of balance caused by the sudden deceleration and collision with the hard surface below.",
+              "reasoning": "The worker’s body is directly impacted by the descending metal component, transferring significant kinetic energy through the collision. The abrupt stoppage causes inertia to act against the body, leading to a violent deceleration that could result in severe injuries such as fractures or concussions. The proximity of the worker to the falling object creates a critical risk zone where even minor misalignment can lead to catastrophic outcomes due to momentum transfer during the impact event. Structural compression occurs around the torso and limbs upon contact, further increasing the likelihood of fatal injury if the strike is uncontrolled or prolonged.",
+              "dynamic_prediction": "The worker experiences a rapid deceleration upon impact, potentially causing traumatic brain injury or multi-body collisions involving adjacent structures or limbs."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing an orange uniform and white helmet is struck by a piece of metal falling from above, resulting in potential injury due to the impact force and loss of balance caused by the sudden deceleration and collision with the hard surface below.",
+              "reasoning": "The worker’s body is directly impacted by the descending metal component, transferring significant kinetic energy through the collision. The abrupt stoppage causes inertia to act against the body, leading to a violent deceleration that could result in severe injuries such as fractures or concussions. The proximity of the worker to the falling object creates a critical risk zone where even minor misalignment can lead to catastrophic outcomes due to momentum transfer during the impact event. Structural compression occurs around the torso and limbs upon contact, further increasing the likelihood of fatal injury if the strike is uncontrolled or prolonged.",
+              "dynamic_prediction": "The worker experiences a rapid deceleration upon impact, potentially causing traumatic brain injury or multi-body collisions involving adjacent structures or limbs."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Install protective barriers to prevent workers from being struck by falling objects, ensuring they remain within safe operational distances from hazardous areas."
+        },
+        "latency_seconds": 38.696
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2703",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2703.png",
+        "media_sha256": "0eafa6bc77f9d8384d8ba6f8bca8068f86f7c744e974738a909d3987c7027d92",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2703.png",
+        "upstream_object_counts": {
+          "helmet": 8,
+          "head": 7
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.441
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2455",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2455.png",
+        "media_sha256": "bacb5f7c1b9d0a5d65c87dfdee9c229994558695e5934be11e35561a595adfd8",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2455.png",
+        "upstream_object_counts": {
+          "helmet": 9,
+          "head": 1
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow hard hat is struck by a blue jacket-clad individual who appears to be operating or interacting with a piece of machinery, potentially causing injury due to sudden movement or collision risk.",
+              "reasoning": "The striking action involves the transfer of momentum from the moving operator to the struck individual, resulting in a high-risk collision. The proximity and direct contact create a significant chance of injury due to the abrupt change in motion and lack of protective gear on the struck person’s head. Inertia plays a role here, as the struck individual’s body resists the sudden force applied during the impact, leading to potential structural damage or loss of balance. The interaction highlights a critical failure in situational awareness and protective measures within the workspace environment."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a red hard hat is struck by a blue jacket-clad individual who appears to be operating or interacting with a piece of machinery, potentially causing injury due to sudden movement or collision risk.",
+              "reasoning": "The striking action involves the transfer of momentum from the moving operator to the struck individual, resulting in a high-risk collision. The proximity and direct contact create a significant chance of injury due to the abrupt change in motion and lack of protective gear on the struck person’s head. Inertia plays a role here, as the struck individual’s body resists the sudden force applied during the impact, leading to potential structural damage or loss of balance. The interaction highlights a critical failure in situational awareness and protective measures within the workspace environment."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a black hard hat is struck by a blue jacket-clad individual who appears to be operating or interacting with a piece of machinery, potentially causing injury due to sudden movement or collision risk.",
+              "reasoning": "The striking action involves the transfer of momentum from the moving operator to the struck individual, resulting in a high-risk collision. The proximity and direct contact create a significant chance of injury due to the abrupt change in motion and lack of protective gear on the struck person’s head. Inertia plays a role here, as the struck individual’s body resists the sudden force applied during the impact, leading to potential structural damage or loss of balance. The interaction highlights a critical failure in situational awareness and protective measures within the workspace environment."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Ensure all individuals involved in machine operation wear appropriate personal protective equipment (PPE), including hard hats, and maintain safe distances to reduce the risk of unexpected collisions."
+        },
+        "latency_seconds": 45.044
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3287",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3287.png",
+        "media_sha256": "187a8cb63beed36c14e994c3e9fb35fd31f5ff0783538d0e888e497fa54f4e57",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3287.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "The worker is struck by a moving part of the yellow machinery, resulting in severe injury due to high-speed collision and loss of balance",
+              "reasoning": "The worker’s body is positioned directly within the operational range of the moving machinery component, leading to a high risk of being struck. The worker's torso and upper body are exposed without protective gear, increasing vulnerability to kinetic impact. Inertia causes the worker to be violently thrown backward upon contact, potentially causing fatal injuries due to the sudden deceleration and structural deformation during the collision. The proximity of the worker to the moving parts creates a critical hazard where even minor misalignment could result in catastrophic failure of momentum transfer and severe trauma.",
+              "dynamic_prediction": "The worker will experience a violent deceleration and likely suffer life-threatening injuries due to the high-speed impact with the machinery."
+            }
+          ],
+          "overall_safety_score": 50
+        },
+        "latency_seconds": 21.987
+      },
+      {
+        "id": "public-ppe:hard_hat_workers691",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers691.png",
+        "media_sha256": "e0e8849753cad2d6eff2f2f802e87ec53436f36c5897843021df180f939d716a",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers691.png",
+        "upstream_object_counts": {
+          "helmet": 4,
+          "head": 1
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a yellow hard hat is struck by a moving piece of machinery, resulting in severe injury due to high-speed collision and loss of balance caused by sudden deceleration and momentum transfer.",
+              "reasoning": "The striking object has significant kinetic energy due to its speed and mass, which transfers abruptly upon contact with the worker’s body. The worker’s posture and position make them vulnerable to being thrown backward or sideways, leading to potential fatal injuries. Inertia causes the worker’s upper body to resist the change in motion while the lower body continues forward movement, increasing the risk of impact. The proximity of the worker to the moving object means there is no protective space, making this a critical hazard that demands immediate attention and intervention to prevent further harm or death.",
+              "dynamic_prediction": "The worker will experience a violent deceleration, potentially causing traumatic brain injury, fractures, or internal organ damage depending on the exact point of impact."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "Another individual near the construction area is struck by a moving component of the machinery, leading to serious injury due to the abrupt stoppage and momentum transfer during the collision event.",
+              "reasoning": "This scenario involves a similar principle of kinetic energy and momentum transfer. The moving part of the machinery possesses substantial velocity and mass, which results in a powerful force when it collides with the worker. The worker’s body is caught off guard, experiencing a sudden deceleration that can cause severe trauma. The lack of reaction time and protective gear exacerbates the severity of the impact. Structural deformation of both the machinery and the worker’s body may occur, contributing to life-threatening injuries such as head trauma, limb amputation, or multi-system failure. The close proximity of the worker to the moving object creates a high likelihood of collision, emphasizing the need for strict adherence to safety protocols and proper use of personal protective equipment (PPE), including helmets, to mitigate these risks effectively."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Ensure all workers wear appropriate PPE, including hard hats, and maintain safe distances from moving machinery components. Conduct regular training sessions to reinforce safety procedures and emergency response techniques."
+        },
+        "latency_seconds": 39.199
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1395",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1395.png",
+        "media_sha256": "0c32accb32d5466e7e6089a26ff909ca8d1c1e2b5fa6ed57fe9a117fc7d6023d",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1395.png",
+        "upstream_object_counts": {
+          "head": 6
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.369
+      },
+      {
+        "id": "public-ppe:hard_hat_workers242",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers242.png",
+        "media_sha256": "6667591d455260aff4f655e11a02d09c4edc9ada30b6959124fe6b338b8ad008",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers242.png",
+        "upstream_object_counts": {
+          "helmet": 1,
+          "head": 5
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "A person wearing a white hard hat is standing close to a machine, potentially exposed to its moving parts without adequate protection from potential impacts or sudden movements",
+              "reasoning": "The individual in the white hard hat is positioned near a machine that may have moving components, creating a risk of being struck by debris or mechanical parts. The proximity suggests insufficient protective coverage, especially if the machine operates with high-speed or forceful motions. Inertia and momentum transfer could result in severe injury upon collision, given the lack of additional safety measures such as face shields or reinforced clothing. Structural compression might also occur due to the interaction between the person’s body and the machine’s moving elements, further increasing the likelihood of harm.",
+              "dynamic_prediction": "Potential for significant injury or fatal outcome due to the combination of high-speed motion, unprotected exposure, and structural vulnerability."
+            }
+          ]
+        },
+        "latency_seconds": 21.961
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1703",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers1703.png",
+        "media_sha256": "c10d3bd4d5bc659ffa33799bab6ba7b0b386cbdc0edb70979c1336adfd2243da",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1703.png",
+        "upstream_object_counts": {
+          "helmet": 7,
+          "head": 4
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.426
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2280",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2280.png",
+        "media_sha256": "20015fa605c1b7bc78bea4df149a1c93a0679c3c546955761f56a017c9b78090",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2280.png",
+        "upstream_object_counts": {
+          "helmet": 6
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 44.142
+      },
+      {
+        "id": "public-ppe:hard_hat_workers952",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers952.png",
+        "media_sha256": "6c5a459edb880c6fa65704f02746eeafa4e6b0031c3e28ed40ff6901fd604da2",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers952.png",
+        "upstream_object_counts": {
+          "helmet": 1
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 22.787
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3102",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3102.png",
+        "media_sha256": "d2ebdf7e4bbffa2556b5eb9662780ce56c75aeed82338516d835f815ec896833",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3102.png",
+        "upstream_object_counts": {
+          "head": 10
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.07
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3752",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers3752.png",
+        "media_sha256": "bc01520b66e91facf554eb11fb8bdd06cc59293bdfea3d22c126bf0366a2b615",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3752.png",
+        "upstream_object_counts": {
+          "helmet": 3
+        },
+        "hazard_detected": true,
+        "predicted_events": [
+          "struck_by"
+        ],
+        "result": {
+          "hazards_detected": [
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "The worker wearing a blue helmet is struck by the overhead crane mechanism, resulting in potential injury due to the sudden deceleration and momentum transfer during the collision.",
+              "reasoning": "The overhead crane mechanism is moving rapidly, transferring significant kinetic energy to the worker’s body upon impact. The speed and mass of the crane component create a high risk of severe injury or fatality because the worker is caught off guard and unable to react quickly enough to avoid the strike. Inertia plays a critical role here, as the worker’s body continues forward motion even after being stopped abruptly by the crane’s structure, leading to a dangerous collision scenario where both the worker and the crane component experience structural compression and deceleration simultaneously. This results in a high-severity accident involving struck-by hazards, primarily affecting the upper torso and head regions of the worker."
+            },
+            {
+              "type": "struck_by",
+              "event_type": "struck_by",
+              "severity": "High",
+              "description": "The worker wearing a red helmet is struck by the overhead crane mechanism, resulting in potential injury due to the sudden deceleration and momentum transfer during the collision.",
+              "reasoning": "The overhead crane mechanism is moving rapidly, transferring significant kinetic energy to the worker’s body upon impact. The speed and mass of the crane component create a high risk of severe injury or fatality because the worker is caught off guard and unable to react quickly enough to avoid the strike. Inertia plays a critical role here, as the worker’s body continues forward motion even after being stopped abruptly by the crane’s structure, leading to a dangerous collision scenario where both the worker and the crane component experience structural compression and deceleration simultaneously. This results in a high-severity accident involving struck-by hazards, primarily affecting the upper torso and head regions of the worker."
+            }
+          ],
+          "overall_safety_score": 50,
+          "recommendation": "Install protective barriers around the overhead crane mechanism to prevent accidental strikes. Ensure that workers maintain safe distances from the crane while performing maintenance tasks. Conduct regular training sessions focused on recognizing and avoiding hazards associated with moving mechanical components."
+        },
+        "latency_seconds": 36.466
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2227",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe/images/hard_hat_workers2227.png",
+        "media_sha256": "a18161cb4bcf746189ce922553e2275676d9bda56109dd52def624011843dccd",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2227.png",
+        "upstream_object_counts": {
+          "helmet": 6
+        },
+        "hazard_detected": false,
+        "predicted_events": [],
+        "result": {
+          "hazards_detected": []
+        },
+        "latency_seconds": 9.784
+      }
+    ]
+  },
+  "progress": {
+    "mode": "base",
+    "completed_samples": 100,
+    "total_samples": 100
+  }
+}

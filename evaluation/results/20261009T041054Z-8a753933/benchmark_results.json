@@ -1,0 +1,659 @@
+{
+  "status": "completed_with_errors",
+  "setup": {
+    "ready": true,
+    "errors": [],
+    "samples": 20,
+    "training_samples": 0,
+    "mode": "base-only",
+    "group_and_hash_holdout_checked": false,
+    "safety_context": "Evaluate ONLY safety helmet compliance for visible people. Report a ppe_violation hazard when at least one visible head lacks a safety helmet. If all visible heads wear safety helmets, return hazards_detected as an empty list. Exclude other equipment, machinery, fall, electrical or site hazards from this assessment. This assessment does not determine overall site safety.",
+    "scope": "Helmet presence only; negative means no unprotected head annotated, not a safe worksite",
+    "dataset_limitations": [
+      "Targets are upstream annotations, not independent review by an industrial safety expert.",
+      "Original session groups are unavailable; all samples share one conservative unknown-session group.",
+      "Exact duplicate files are removed; near-duplicates and pretraining overlap are not verified.",
+      "Only base-model evaluation is immediately available; no project LoRA weights are supplied.",
+      "The upstream dataset calls its only split train; this project does not train on this selected evaluation subset."
+    ],
+    "manifest": "/home/woodcross/Cosmos-Guardian/evaluation/public_ppe_dev_v1.json",
+    "adapter": "/home/woodcross/Cosmos-Guardian/outputs/cosmos-reason2-2b-safety-lora",
+    "seed": 0,
+    "timestamp": "20261009T041054Z",
+    "git_revision": "4c0cf63fb412462cf0653b11616c79a04b67f1dc",
+    "working_tree_dirty": true,
+    "python": "3.10.12",
+    "torch": "2.9.0+cu128",
+    "transformers": "5.1.0",
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "manifest_sha256": "cc81d3ce1564c2ae6e3451c607c24b4e93f105dc2b10098a97a6e9c915d20ea8",
+    "prompt_sha256": "530c63a44f5e41161ba105f2ebb8df8596696e0c54a27d8a33ca0af2ed029d8b",
+    "profile": "helmet",
+    "development_manifest_sha256": null,
+    "agent_code_sha256": "9d9652af94c8ec79ea3270dad5263e44520712242ee16be2191392430a5c90e1",
+    "evaluation_code_sha256": "0c7b24c907ef2ca0acc039044b2e6ab0d639d4a25b8d62ffaab612af564723ff",
+    "benchmark_code_sha256": "ad75ea4642ed496cfa4b05ef2febf05fdf4b8642a924dfa04441d97cd483e656",
+    "adapter_sha256": null,
+    "training_manifest_sha256": null,
+    "label_grounding": false,
+    "classification": "exact event_type categories; unclassified outputs count as mismatches",
+    "source_sha256": {
+      "core/agent.py": "9d9652af94c8ec79ea3270dad5263e44520712242ee16be2191392430a5c90e1",
+      "core/evaluation.py": "0c7b24c907ef2ca0acc039044b2e6ab0d639d4a25b8d62ffaab612af564723ff",
+      "scripts/benchmark.py": "ad75ea4642ed496cfa4b05ef2febf05fdf4b8642a924dfa04441d97cd483e656",
+      "prompts/safety_inspector.yaml": "1c0b2804224206f032040cba0d5d7e65db8c63a1b6cdcc30fc806213d2831346",
+      "core/helmet.py": "165a2b5df9c14e0e3bc570d947ddccccdb632c98530502c9fe96dfb2021fb046",
+      "core/helmet_agent.py": "9fccef45db55688401df0bb49d9e9b652a501827c3b1fb194407c88521c4e096",
+      "prompts/helmet_inspector.yaml": "530c63a44f5e41161ba105f2ebb8df8596696e0c54a27d8a33ca0af2ed029d8b"
+    },
+    "base_model_id": "nvidia/Cosmos-Reason2-2B",
+    "base_model_revision": "9ce19a195e423419c349abfc86fd07178b230561"
+  },
+  "summary": {
+    "base": {
+      "samples": 20,
+      "hazardous_samples": 10,
+      "safe_samples": 10,
+      "abstentions": 0,
+      "schema_error_count": 20,
+      "confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 0,
+        "fn": 0,
+        "invalid_hazardous": 10,
+        "invalid_safe": 10
+      },
+      "valid_output_rate": 0.0,
+      "precision": null,
+      "recall_valid_outputs": null,
+      "effective_recall_including_failures": 0.0,
+      "false_positive_rate_valid_outputs": null,
+      "event_exact_match_rate": 0.0,
+      "per_event_valid_outputs": {
+        "entrapment": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "fall": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "other": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "ppe_violation": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "struck_by": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "mean_latency_seconds": null,
+      "p95_latency_seconds": null,
+      "latency_scope": "successful analysis only, full pipeline excluding model loading"
+    }
+  },
+  "details": {
+    "base": [
+      {
+        "id": "public-ppe:hard_hat_workers2529",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers2529.png",
+        "media_sha256": "f018d9d116c9bbc81270cb9146042001707a4fe3f9d7d1d11d919168579ee5f9",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2529.png",
+        "upstream_object_counts": {
+          "head": 6
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 24.044,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"clear\",\"evidence\":\"All six individuals in the image are wearing short-sleeved shirts and trousers, with no visible safety helmets. Their heads are uncovered, and no helmets are present in the image.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 50,
+            "elapsed_seconds": 24.044
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2948",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers2948.png",
+        "media_sha256": "ce21ff03f69768613792ba844505f0a5257ab54e5bda7a7d2fc7ff15a0ec9722",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2948.png",
+        "upstream_object_counts": {
+          "helmet": 1,
+          "head": 2
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 22.112,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"clear\",\"evidence\":\"A person is wearing a red hard hat, which is a safety helmet required in this environment. The individual is also wearing a white protective suit, which is appropriate for the task being performed. The helmet is securely fastened and fits properly, indicating compliance with safety regulations. The person is standing on a platform, and the helmet is visible and correctly worn, with no signs of improper placement or absence. The helmet is a hard hat, which is a type of safety helmet required in this environment. The person is wearing a hard hat, which is a safety helmet required in this environment. The helmet is securely fastened and fits properly, indicating compliance with safety regulations. The helmet is a hard hat, which is a type of safety helmet required in this environment. The person is wearing a hard hat, which is a safety helmet required in this environment. The helmet is securely fastened and fits properly, indicating compliance with safety regulations. The helmet is a hard hat, which is a type of safety helmet required in this environment. The person is wearing a hard hat, which is a safety helmet required in this environment. The helmet is securely fastened and fits properly, indicating compliance with safety regulations. The helmet is a hard hat",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 256,
+            "elapsed_seconds": 22.112
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4309",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers4309.png",
+        "media_sha256": "1cffb4023c8760b9cc6aa225b3156a99ccf476deb6a067c2d9c6665214a5960f",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4309.png",
+        "upstream_object_counts": {
+          "helmet": 19
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 15.661,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"violation\",\"evidence\":\"There are five people in the image who are wearing helmets. The helmets are blue, green, and white. The five people are wearing helmets, but the person in the black jacket is not wearing a helmet. The person in the black jacket is wearing a black jacket and pants, and is not wearing a helmet. The person in the orange jacket is wearing a blue helmet. The person in the green jacket is wearing a blue helmet. The person in the white shirt is wearing a blue helmet. The person in the camouflage jacket is wearing a blue helmet.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 126,
+            "elapsed_seconds": 15.66
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1103",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers1103.png",
+        "media_sha256": "2062d793570a205fb642f70792fe83e9da8c4116d920e53497cae8ee71bc1700",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1103.png",
+        "upstream_object_counts": {
+          "head": 6
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 12.532,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"clear\",\"evidence\":\"All six individuals in the image are wearing hard hats, which are appropriate for a construction site environment. The hard hats are securely fastened, and there are no signs of them being improperly worn or removed. The presence of hard hats indicates compliance with safety protocols in this setting.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 69,
+            "elapsed_seconds": 12.532
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3879",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers3879.png",
+        "media_sha256": "bc9861c7f625979eba81911ab723b6c0e16b89c4984c068d533bb653376ddd6a",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3879.png",
+        "upstream_object_counts": {
+          "helmet": 8
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 12.085,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"violation\",\"evidence\":\"All individuals in the image are wearing hard safety helmets, which are appropriate for the context. There are no instances of hair, caps, or hoods being worn instead of helmets, and no one is missing a helmet entirely.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 60,
+            "elapsed_seconds": 12.085
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3294",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers3294.png",
+        "media_sha256": "52e6a8b5ef3357a58e79ea304723b542dcba8e9e23b716125a50cd1c7322bd05",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3294.png",
+        "upstream_object_counts": {
+          "helmet": 4
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 11.855,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"clear\",\"evidence\":\"A worker in the foreground is wearing a yellow hard hat, while others in the background are also seen wearing similar yellow hard hats, indicating compliance with safety helmet requirements in the area.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 50,
+            "elapsed_seconds": 11.855
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers219",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers219.png",
+        "media_sha256": "18bc880e01a44507fbc86f868cb8b14b99b2d270e1979e822267905da3757a73",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers219.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 11.449,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"clear\",\"evidence\":\"A man is wearing a red hard hat, which is a required safety helmet in this environment.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 33,
+            "elapsed_seconds": 11.449
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4645",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers4645.png",
+        "media_sha256": "b323291e281734bc60fbe4ae70ae9b96e0b325585451e1fd403a0f38779d8d57",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4645.png",
+        "upstream_object_counts": {
+          "helmet": 4
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 11.33,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"violation\",\"evidence\":\"Three workers are wearing blue hard hats, which are required safety helmets in this environment.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 32,
+            "elapsed_seconds": 11.33
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3237",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers3237.png",
+        "media_sha256": "c99f32b9867f98e65cecf7daadacea1f449237b1f6064d384e58c2cc95c885b2",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3237.png",
+        "upstream_object_counts": {
+          "helmet": 4
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 12.706,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"clear\",\"evidence\":\"All individuals in the image are wearing hard safety helmets, which are appropriate for the work environment depicted. There are no instances of hair, caps, or hoods being worn instead of helmets, and no one is missing a helmet entirely.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 61,
+            "elapsed_seconds": 12.706
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2712",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers2712.png",
+        "media_sha256": "be1a9cd6d865b7693c43cca75c9473d148f9ee5be9e7f0b40dba33bec2e9ea34",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2712.png",
+        "upstream_object_counts": {
+          "helmet": 6
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 13.014,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"clear\",\"evidence\":\"Three people are visible, all wearing hard hats. The person on the left wears a white hard hat, the person in the middle wears a white hard hat, and the person on the right wears a blue hard hat. All three are in a helmet-required area, and all are wearing hard hats as required by safety regulations.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 79,
+            "elapsed_seconds": 13.013
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1327",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers1327.png",
+        "media_sha256": "13295f0b2733c6306797bad81da63bb9e3dc9f87b14f07a4aa5cc9abb04db5e4",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1327.png",
+        "upstream_object_counts": {
+          "helmet": 7,
+          "head": 2
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 21.586,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"violation\",\"evidence\":\"Four people are wearing hard hats, and one person is wearing a hooded raincoat. The four people in the foreground are wearing blue hard hats, and the person in the background is wearing an orange hard hat. The person in the background is wearing a hooded raincoat, which is not a hard hat. The person in the background is wearing a hooded raincoat, which is not a hard hat. The person in the background is wearing a hooded raincoat, which is not a hard hat. The person in the background is wearing a hooded raincoat, which is not a hard hat. The person in the background is wearing a hooded raincoat, which is not a hard hat. The person in the background is wearing a hooded raincoat, which is not a hard hat. The person in the background is wearing a hooded raincoat, which is not a hard hat. The person in the background is wearing a hooded raincoat, which is not a hard hat. The person in the background is wearing a hooded raincoat, which is not a hard hat. The person in the background is wearing a hooded raincoat, which is not a hard hat. The",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 256,
+            "elapsed_seconds": 21.586
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers2910",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers2910.png",
+        "media_sha256": "86b8e3980b693a7e50bf7f5b13efd6aa190a8573b88708922d7dc3bd1ab28c1d",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers2910.png",
+        "upstream_object_counts": {
+          "head": 11
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 11.078,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"clear\",\"evidence\":\"No person is wearing a safety helmet; all heads are exposed and not covered by helmets or other protective headgear.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 37,
+            "elapsed_seconds": 11.077
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1629",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers1629.png",
+        "media_sha256": "682eb1ea66ed477ff75ec2b552771cb9233143577d84a49dd205e1e31ab91921",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1629.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 11.349,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"clear\",\"evidence\":\"A person is wearing a yellow hard hat, which is a required safety helmet in this context.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 33,
+            "elapsed_seconds": 11.349
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4595",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers4595.png",
+        "media_sha256": "06c6fbea66972054e4642eccd87473295df6d0035eddb755664cc7e329f82358",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4595.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 12.726,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"clear\",\"evidence\":\"A man is wearing a red hard hat with white dots, which is a type of safety helmet required in certain environments. The helmet is securely fastened on his head, indicating compliance with safety regulations. No other individuals are visible in the image, so there are no additional helmets to assess for violations or clearances.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 77,
+            "elapsed_seconds": 12.726
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4500",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers4500.png",
+        "media_sha256": "77ff00e6a250205af38566c2fdb9b51631b205ba800df3f14f54558538bc96fe",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4500.png",
+        "upstream_object_counts": {
+          "head": 12
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 11.989,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"clear\",\"evidence\":\"All individuals in the image are wearing hard hats, indicating compliance with safety protocols. No one is wearing a cap, hood, or any other type of head covering that would be considered a violation of helmet requirements.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 56,
+            "elapsed_seconds": 11.989
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3492",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers3492.png",
+        "media_sha256": "658debbe843b23c470e78057d1d373ca3166211b729a1e7205d25717654aa71f",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3492.png",
+        "upstream_object_counts": {
+          "helmet": 4,
+          "head": 1
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 10.604,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"clear\",\"evidence\":\"No person is wearing a safety helmet; all heads are exposed and uncovered.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 29,
+            "elapsed_seconds": 10.604
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers3739",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers3739.png",
+        "media_sha256": "ee350f593e56cc04acd18f3e71587fd486fdb35df80fe5b74123847bc6acac0a",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers3739.png",
+        "upstream_object_counts": {
+          "helmet": 8,
+          "head": 20
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 11.91,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"violation\",\"evidence\":\"The group of people includes several individuals wearing hard hats, including one in a blue hard hat, one in a yellow hard hat, and others in white hard hats, indicating a helmet-required area where head protection is mandatory.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 59,
+            "elapsed_seconds": 11.91
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4867",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers4867.png",
+        "media_sha256": "0b452552f46ffaa81e963d6bab55fb32b530e2a03ee68286accaca17276aa67e",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4867.png",
+        "upstream_object_counts": {
+          "head": 4
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 11.108,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"clear\",\"evidence\":\"No people are wearing helmets in the image; all visible heads are uncovered and not covered by helmets or other protective headgear.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 39,
+            "elapsed_seconds": 11.108
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers1077",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers1077.png",
+        "media_sha256": "bda8ec56689eb9501a2350ed635f49d86a04e2f2bae0b29899c48ea31a926f5d",
+        "is_hazardous": true,
+        "events": [
+          "ppe_violation"
+        ],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers1077.png",
+        "upstream_object_counts": {
+          "helmet": 4,
+          "head": 1
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 12.626,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"clear\",\"evidence\":\"Three individuals are wearing hard hats: one in a red hard hat, one in a yellow hard hat, and one in a white hard hat. The others are not wearing hard hats, but their heads are not visible in the frame.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 61,
+            "elapsed_seconds": 12.626
+          }
+        }
+      },
+      {
+        "id": "public-ppe:hard_hat_workers4032",
+        "group_id": "Voxel51/hard-hat-detection:source-session-unknown",
+        "media_path": "/home/woodcross/Cosmos-Guardian/data/public_ppe_v1/images/hard_hat_workers4032.png",
+        "media_sha256": "175188b263a97a920e190d73e433b4b861e7180ca7257ac2bc6bd67f57f08bcb",
+        "is_hazardous": false,
+        "events": [],
+        "annotation_source": "Voxel51/hard-hat-detection@d11e7d6b69ba1a22422db3230c0415d39a699d7c:samples.json#ground_truth; image-level aggregation of upstream labels",
+        "upstream_path": "data/hard_hat_workers4032.png",
+        "upstream_object_counts": {
+          "helmet": 2
+        },
+        "error": "ValueError: Invalid model JSON",
+        "elapsed_seconds": 12.411,
+        "result": {
+          "error": "Invalid helmet observation JSON",
+          "raw_output": "```json\n{\"decision\":\"clear\",\"evidence\":\"Two workers are wearing hard hats; one is a yellow hard hat and the other is a white hard hat. Both are wearing safety vests with reflective stripes. The helmets are appropriate for the work environment and are being worn correctly on the heads of the workers.\"}\n```",
+          "assessment_status": "unknown",
+          "profile": "helmet-v1",
+          "inference": {
+            "input_tokens": 358,
+            "output_tokens": 65,
+            "elapsed_seconds": 12.411
+          }
+        }
+      }
+    ]
+  },
+  "progress": {
+    "mode": "base",
+    "completed_samples": 20,
+    "total_samples": 20
+  }
+}

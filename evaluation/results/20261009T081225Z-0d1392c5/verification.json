@@ -1,0 +1,119 @@
+{
+  "samples": 100,
+  "summary_recomputed": true,
+  "source_snapshots_verified": true,
+  "image_and_annotation_hashes_verified": true,
+  "labels_and_order_verified": true,
+  "preparation_script_verified": true,
+  "public_data_exact_hash_overlap": false,
+  "groups": {
+    "aihub:71770:L1:2023-10-25": {
+      "samples": 75,
+      "hazardous_samples": 25,
+      "safe_samples": 50,
+      "abstentions": 0,
+      "schema_error_count": 0,
+      "confusion": {
+        "tp": 22,
+        "fp": 17,
+        "tn": 33,
+        "fn": 3,
+        "invalid_hazardous": 0,
+        "invalid_safe": 0
+      },
+      "valid_output_rate": 1.0,
+      "precision": 0.564103,
+      "recall_valid_outputs": 0.88,
+      "effective_recall_including_failures": 0.88,
+      "false_positive_rate_valid_outputs": 0.34,
+      "event_exact_match_rate": 0.733333,
+      "per_event_valid_outputs": {
+        "entrapment": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "fall": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "other": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "ppe_violation": {
+          "tp": 22,
+          "fp": 17,
+          "fn": 3
+        },
+        "struck_by": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "mean_latency_seconds": 11.305,
+      "p95_latency_seconds": 15.442,
+      "latency_scope": "successful analysis only, full pipeline excluding model loading"
+    },
+    "aihub:71770:L3:2023-08-16": {
+      "samples": 25,
+      "hazardous_samples": 25,
+      "safe_samples": 0,
+      "abstentions": 0,
+      "schema_error_count": 0,
+      "confusion": {
+        "tp": 23,
+        "fp": 0,
+        "tn": 0,
+        "fn": 2,
+        "invalid_hazardous": 0,
+        "invalid_safe": 0
+      },
+      "valid_output_rate": 1.0,
+      "precision": 1.0,
+      "recall_valid_outputs": 0.92,
+      "effective_recall_including_failures": 0.92,
+      "false_positive_rate_valid_outputs": null,
+      "event_exact_match_rate": 0.92,
+      "per_event_valid_outputs": {
+        "entrapment": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "fall": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "other": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        },
+        "ppe_violation": {
+          "tp": 23,
+          "fp": 0,
+          "fn": 2
+        },
+        "struck_by": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "mean_latency_seconds": 10.839,
+      "p95_latency_seconds": 15.993,
+      "latency_scope": "successful analysis only, full pipeline excluding model loading"
+    }
+  },
+  "selected_sequences": 5,
+  "official_training_group_overlap": [
+    "aihub:71770:L1:2023-10-25"
+  ],
+  "timing_note": "Concurrent Docker packaging on the same host; one model inference process on GPU. Not isolated maximum throughput.",
+  "report_sha256": "075aa7b122c73ca9dfa3c11b261f0445d8fc3ad8566c4d7dd0dc3c2033680089"
+}
